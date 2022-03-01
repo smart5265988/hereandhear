@@ -2,9 +2,9 @@ import React from 'react';
 
 const PlayList = () => {
   return (
-          <div className="content home">
-            <div className="sec_wrapper score_board_wrap kbo">PlayList</div>
-          </div>
+    <div className="content">
+      <div className="sec_wrapper">저장된 리스트가 없습니다.</div>
+    </div>
   );
 };
 

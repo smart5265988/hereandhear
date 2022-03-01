@@ -10,6 +10,8 @@ const Footer = React.lazy(() => import('./components/footer/Footer'));
 const DeeplinkPopup = React.lazy(
   () => import('./components/main/DeeplinkPopup'),
 );
+const Intro = React.lazy(() => import('./components/Intro'));
+const Player = React.lazy(() => import('./components/player/Player'));
 
 function AppContents() {
   return (
@@ -21,6 +23,8 @@ function AppContents() {
               <Route path="/home" component={Home} />
               <Route path="/my" component={My} />
               <Route path="/category" component={Category} />
+              <Route path="/player" component={Player} />
+              <Route path="/player/:category/:id" component={Player} />
               <Route path="/playlist" component={PlayList} />
               <Redirect to="/home" />
             </Switch>
@@ -29,7 +33,7 @@ function AppContents() {
           <div id="footer">
             <Route component={Footer} />
           </div>
-
+          {/* <Route component={Intro} /> */}
           {/* <Route component={DeeplinkPopup} /> */}
         </ErrorBoundary>
       </Suspense>

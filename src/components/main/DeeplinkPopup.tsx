@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 const DeeplinkPopup = () => {
   return (
-    <div className="modal">
+    <div className="modal fadeIn" id="popup_network_error">
       <div className="dim"></div>
       <span>Hear&here</span>
       <p>

@@ -3,6 +3,12 @@
 
 html {
   background-color: #000;
+  color: #fff;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 
 #wrap {
@@ -16,15 +22,17 @@ html {
   margin: 0 auto;
 }
 #wrap.main {
-  background-color: #ffffff;
+  background-color: #000;
   padding-bottom: 5rem;
 }
-#wrap.sub {
-  background-color: #f7f7f7;
-}
+/* #wrap.sub {
+  background-color: #999;
+} */
 #container {
   position: relative;
   width: 100%;
+  /* background: url('../images/sapporo.jpg') no-repeat;
+  background-size: 50.8rem; */
 }
 
 /* Common */
@@ -34,13 +42,21 @@ html {
 
 .content .sec_wrapper {
   padding: 1.5333rem 0;
-  border-top: 0.9333rem solid #fff;
+  border-top: 0.9333rem solid #000;
 }
-
+/* .content .top_image {
+  background: url('../images/sapporo.jpg') no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 500px;
+  max-width: 50.8rem;
+  position: fixed;
+} */
 /* todayBlock */
-.today .content .popular_wrap {
+.today .content {
   border-top: 0 none;
   padding: 1.5333rem;
+  background-color: #000;
 }
 .tody_scroll {
   padding-bottom: 1.5333rem;
@@ -63,7 +79,8 @@ html {
 }
 .today.content .tody_scroll ul {
   padding: 0 1.5333rem;
-  overflow: visible;
+  /* overflow: visible; */
+  overflow: hidden;
   white-space: nowrap;
   display: inline-block;
 }
@@ -75,9 +92,12 @@ html {
   width: 20rem;
   border-radius: 0.7333rem;
   box-shadow: 0 0.5rem 1.7rem 0 rgba(0, 0, 0, 0.09);
-  color: #000000;
+  color: #fff;
   background: url('../images/sapporo.jpg') no-repeat;
   background-size: cover;
+}
+.today.content .tody_scroll li:first-child {
+  margin-left: 0;
 }
 
 /* footer */
@@ -85,11 +105,9 @@ html {
   position: fixed;
   bottom: 0;
   z-index: 10;
-  color: red;
-  background-color: #fff;
+  color: #fff;
   width: 100%;
   max-width: 50.8rem;
-  background-color: #000000;
 }
 .tab_container {
   position: relative;
@@ -97,8 +115,20 @@ html {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: #292929;
+  border-radius: 0.7333rem 0.7333rem 0 0;
+  padding: 0 2.5333rem;
 }
 .tab_container div {
   height: 5rem;
-  background-color: #b4b4b4;
+  /* background-color: #fff; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.BackGround {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
 }
