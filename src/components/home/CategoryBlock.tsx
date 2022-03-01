@@ -17,25 +17,22 @@ const CategotyBlock = () => {
   };
 
   return (
-    <div className="content today" style={{ height: '20rem' }}>
-      <div
-        className="inner"
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          border: '1px solid red',
-          height: '100%',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          paddingLeft: '3rem',
-          paddingRight: '3rem',
-          background: '#000',
-        }}
-      >
-        <div onClick={() => detailList('city')}>city</div>
-        <div onClick={() => detailList('remember')}>remember</div>
-        <div onClick={() => detailList('space')}>space</div>
-        <div onClick={() => detailList('nature')}>nature</div>
+    <div className="sec_wrapper">
+      <div className="category">
+        <ul>
+          <li>
+            <div onClick={() => detailList('city')}></div>
+            <div onClick={() => detailList('remember')}></div>
+            <div onClick={() => detailList('space')}></div>
+            <div onClick={() => detailList('nature')}></div>
+          </li>
+          <li>
+            <div>city</div>
+            <div>remember</div>
+            <div>space</div>
+            <div>nature</div>
+          </li>
+        </ul>
       </div>
     </div>
   );

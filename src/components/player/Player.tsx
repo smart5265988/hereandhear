@@ -13,8 +13,11 @@ const Player = () => {
   }, []);
 
   return (
-    <div className="content">
-      <div className="sec_wrapper">Player</div>
+    <div className="content player">
+      <div style={{ paddingTop: '0.9333rem', marginBottom: '0.9333rem' }}>
+        <h1 className="plyerTitle inner">Player</h1>
+      </div>
+      {/* <div className="sec_wrapper">Player</div> */}
     </div>
   );
 };

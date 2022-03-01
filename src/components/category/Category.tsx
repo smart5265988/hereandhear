@@ -21,12 +21,12 @@ const Category = () => {
   };
 
   return (
-    <div className="content">
+    <div className="sec_wrapper">
       <div
         className="top_logo"
         style={{ paddingTop: '0.9333rem', marginBottom: '0.9333rem' }}
       >
-        <h1 className="ic_logo_lgu inner">Catetory</h1>
+        <h1 className="categoryTitle inner">Category</h1>
       </div>
       <div className="inner">
         <div onClick={() => detailList('city')}>city</div>

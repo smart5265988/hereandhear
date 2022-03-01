@@ -2,8 +2,10 @@ import React from 'react';
 
 const BannerBlock = () => {
   return (
-    <div className="content">
-      <div className="sec_wrapper">BannerBlock</div>
+    <div className="sec_wrapper">
+      <div className="inner">
+        <div className="banner">banner</div>
+      </div>
     </div>
   );
 };
