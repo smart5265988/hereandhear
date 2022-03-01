@@ -1,0 +1,104 @@
+@charset "utf-8";
+@import url('reset.css');
+
+html {
+  background-color: #000;
+}
+
+#wrap {
+  position: absolute;
+  width: 100%;
+  max-width: 50.8rem;
+  min-height: 100%;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+#wrap.main {
+  background-color: #ffffff;
+  padding-bottom: 5rem;
+}
+#wrap.sub {
+  background-color: #f7f7f7;
+}
+#container {
+  position: relative;
+  width: 100%;
+}
+
+/* Common */
+.inner {
+  padding: 0 1.5333rem;
+}
+
+.content .sec_wrapper {
+  padding: 1.5333rem 0;
+  border-top: 0.9333rem solid #fff;
+}
+
+/* todayBlock */
+.today .content .popular_wrap {
+  border-top: 0 none;
+  padding: 1.5333rem;
+}
+.tody_scroll {
+  padding-bottom: 1.5333rem;
+  margin: 1.5333rem -1.5333rem 0;
+  overflow-y: hidden;
+  overflow-x: auto;
+  transform: translateZ(0);
+  font-size: 0;
+}
+.today.content .tody_scroll {
+  padding-bottom: 1.5333rem;
+  margin: 1.5333rem -1.5333rem 0;
+  overflow-y: hidden;
+  overflow-x: auto;
+  transform: translateZ(0);
+  font-size: 0;
+}
+.today.content .tody_scroll::-webkit-scrollbar {
+  display: none;
+}
+.today.content .tody_scroll ul {
+  padding: 0 1.5333rem;
+  overflow: visible;
+  white-space: nowrap;
+  display: inline-block;
+}
+.today.content .tody_scroll li {
+  overflow: hidden;
+  vertical-align: top;
+  margin-left: 0.9333rem;
+  display: inline-block;
+  width: 20rem;
+  border-radius: 0.7333rem;
+  box-shadow: 0 0.5rem 1.7rem 0 rgba(0, 0, 0, 0.09);
+  color: #000000;
+  background: url('../images/sapporo.jpg') no-repeat;
+  background-size: cover;
+}
+
+/* footer */
+#footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  color: red;
+  background-color: #fff;
+  width: 100%;
+  max-width: 50.8rem;
+  background-color: #000000;
+}
+.tab_container {
+  position: relative;
+  height: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.tab_container div {
+  height: 5rem;
+  background-color: #b4b4b4;
+}
