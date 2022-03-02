@@ -1,4 +1,5 @@
 import React from 'react';
+import img from '../../res/images/sapporo.jpg';
 
 const TodayBlock = () => {
   return (
@@ -10,10 +11,38 @@ const TodayBlock = () => {
 
       <div className="home_scroll inner">
         <ul>
-          <li>1</li>
-          <li>1</li>
-          <li>1</li>
-          <li>1</li>
+          <li
+            style={{
+              background: `url(${img}) no-repeat`,
+              backgroundSize: 'cover',
+            }}
+          >
+            1
+          </li>
+          <li
+            style={{
+              background: `url(${img}) no-repeat`,
+              backgroundSize: 'cover',
+            }}
+          >
+            1
+          </li>
+          <li
+            style={{
+              background: `url(${img}) no-repeat`,
+              backgroundSize: 'cover',
+            }}
+          >
+            1
+          </li>
+          <li
+            style={{
+              background: `url(${img}) no-repeat`,
+              backgroundSize: 'cover',
+            }}
+          >
+            1
+          </li>
         </ul>
       </div>
     </div>

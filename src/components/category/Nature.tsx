@@ -2,8 +2,8 @@ import React from 'react';
 
 const Nature = () => {
   return (
-    <div className="content">
-      <div className="sec_wrapper">Nature</div>
+    <div className="sec_wrapper">
+      <div className="inner">Nature</div>
     </div>
   );
 };

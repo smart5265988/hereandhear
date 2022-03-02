@@ -2,8 +2,8 @@ import React from 'react';
 
 const Remeber = () => {
   return (
-    <div className="content">
-      <div className="sec_wrapper">Remeber</div>
+    <div className="sec_wrapper">
+      <div className="inner">Remeber</div>
     </div>
   );
 };

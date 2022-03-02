@@ -4,7 +4,7 @@ import CategoryBlock from './CategoryBlock';
 import TodayBlock from './TodayBlock';
 import FreeBlock from './FreeBlock';
 import BannerBlock from '../banner/BannerBlock';
-import vod from '../../res/video/sample.mp4';
+import vod from '../../res/video/background_vod.mp4';
 const Home = () => {
   return (
     <div className="content">
@@ -26,6 +26,15 @@ const Home = () => {
           }
           style={{ height: '50rem' }}
         ></img> */}
+        <div className="ani_logo"></div>
+        <div className="ani_title">
+          당신이 있는 여기서
+          <br />
+          듣기만 하면 여행이 시작됩니다.
+          <br />
+          <br />
+          <b>Here & Hear</b>
+        </div>
         <video style={{ width: '100%' }} src={vod} muted loop autoPlay></video>
       </div>
       <Route render={(props) => <CategoryBlock />} />

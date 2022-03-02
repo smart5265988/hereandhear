@@ -4,7 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <div className="tab_container">
-      <NavLink className="footerIcon" exact to="/home">
+      <NavLink className="footerIcon" to="/home">
         <svg
           fill="#fff"
           id="Outline"
@@ -15,7 +15,7 @@ const Footer = () => {
           <path d="M23.121,9.069,15.536,1.483a5.008,5.008,0,0,0-7.072,0L.879,9.069A2.978,2.978,0,0,0,0,11.19v9.817a3,3,0,0,0,3,3H21a3,3,0,0,0,3-3V11.19A2.978,2.978,0,0,0,23.121,9.069ZM15,22.007H9V18.073a3,3,0,0,1,6,0Zm7-1a1,1,0,0,1-1,1H17V18.073a5,5,0,0,0-10,0v3.934H3a1,1,0,0,1-1-1V11.19a1.008,1.008,0,0,1,.293-.707L9.878,2.9a3.008,3.008,0,0,1,4.244,0l7.585,7.586A1.008,1.008,0,0,1,22,11.19Z" />
         </svg>
       </NavLink>
-      <NavLink className="footerIcon" exact to="/category">
+      <NavLink className="footerIcon" to="/category/city">
         <svg
           version="1.1"
           id="Capa_1"
@@ -31,7 +31,7 @@ const Footer = () => {
           </g>
         </svg>
       </NavLink>
-      <NavLink className="footerIcon" exact to="/player">
+      <NavLink className="footerIcon" to="/player">
         <svg
           fill="#fff"
           id="Outline"
@@ -42,7 +42,7 @@ const Footer = () => {
           <path d="M20.494,7.968l-9.54-7A5,5,0,0,0,3,5V19a5,5,0,0,0,7.957,4.031l9.54-7a5,5,0,0,0,0-8.064Zm-1.184,6.45-9.54,7A3,3,0,0,1,5,19V5A2.948,2.948,0,0,1,6.641,2.328,3.018,3.018,0,0,1,8.006,2a2.97,2.97,0,0,1,1.764.589l9.54,7a3,3,0,0,1,0,4.836Z" />
         </svg>
       </NavLink>
-      <NavLink className="footerIcon" exact to="/my">
+      <NavLink className="footerIcon" to="/my">
         <svg
           fill="#fff"
           id="Outline"

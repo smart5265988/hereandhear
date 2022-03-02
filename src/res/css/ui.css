@@ -68,6 +68,54 @@ html::-webkit-scrollbar {
   padding: 1.5333rem;
   background-color: #000;
 } */
+.ani_logo {
+  background: url('../images/icon/logo1.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 6rem;
+  height: 6rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 25%;
+  animation: subtitle 0.5s ease 2s forwards;
+  opacity: 0;
+}
+@keyframes subtitle {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.ani_title {
+  height: 3rem;
+  z-index: 3;
+  font-size: 2rem;
+  width: max-content;
+  animation: subtitle 0.5s ease 2s forwards;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  text-align: center;
+  transform: translateX(-50%);
+}
+@keyframes subtitle {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 .home_scroll {
   padding-bottom: 1.5333rem;
@@ -105,8 +153,6 @@ html::-webkit-scrollbar {
   border-radius: 0.7333rem;
   box-shadow: 0 0.5rem 1.7rem 0 rgba(0, 0, 0, 0.09);
   color: #fff;
-  background: url('../images/sapporo.jpg') no-repeat;
-  background-size: cover;
 }
 .home_scroll li:first-child {
   margin-left: 0;
@@ -138,7 +184,6 @@ html::-webkit-scrollbar {
 .category {
   width: 100%;
 }
-
 .category ul {
   display: flex;
   flex-direction: column;
@@ -181,6 +226,50 @@ html::-webkit-scrollbar {
   font-size: 4rem;
 }
 
+/* category Page */
+
+.categoryNav {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid red; */
+}
+.categoryNav a {
+  width: max-content;
+  /* background-color: blue; */
+  height: 5rem;
+  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  cursor: pointer;
+  align-items: center;
+}
+.categoryNav a.active {
+  color: #26aae1;
+}
+
+.categorylist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.list {
+  display: inline-block;
+  width: 45%;
+  /* height: auto; */
+  /* border: 1px solid red; */
+  margin-bottom: 2rem;
+}
+.list div {
+  border-radius: 0.7333rem;
+  background-color: #000;
+  overflow: hidden;
+  height: 25rem;
+  box-shadow: 0 0.5rem 1.7rem 0 rgba(0, 0, 0, 0.09);
+}
+
 /* player */
 .plyer .content {
   width: 100%;
@@ -220,7 +309,7 @@ html::-webkit-scrollbar {
   height: 5rem;
   border: 2px solid #999;
   border-radius: 0.8rem;
-  margin-top: 5rem;
+  margin-top: 2.5rem;
   display: flex;
   align-items: center;
   color: #fff;
@@ -291,4 +380,53 @@ html::-webkit-scrollbar {
   width: 100%;
   height: 100vh;
   object-fit: cover;
+}
+
+/* popup */
+
+.modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal_inner {
+  width: 100%;
+  max-width: 50.8rem;
+  min-height: 100%;
+  overflow: hidden;
+  border: 1px solid red;
+  margin: 0 auto;
+}
+
+.modal_content {
+  width: 30rem;
+  height: 20rem;
+  background-color: #26aae1;
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+}
+
+.player_modal {
+  width: 100%;
+  max-width: 50.8rem;
+  height: 5rem;
+  /* position: absolute; */
+  position: fixed;
+  background-color: red;
+  z-index: 999;
+  bottom: 5rem;
 }
