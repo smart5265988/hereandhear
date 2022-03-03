@@ -5,7 +5,7 @@ import TodayBlock from './TodayBlock';
 import FreeBlock from './FreeBlock';
 import BannerBlock from '../banner/BannerBlock';
 import Loading from '../../common/Loading';
-import vod from '../../res/video/background_vod.mp4';
+import vod from '../../res/video/background_vod2.mp4';
 const Home = () => {
   const history = useHistory();
   const [isLoading, setLoading] = useState(true);
@@ -33,9 +33,6 @@ const Home = () => {
 
   return (
     <div className="content">
-      {/* <div style={{ paddingTop: '0.9333rem', marginBottom: '0.9333rem' }}>
-        <h1 className="inner">Here & Hear</h1>
-      </div> */}
       <div
         style={{
           width: '100%',
@@ -45,12 +42,7 @@ const Home = () => {
         }}
       >
         <div className="filter"></div>
-        {/* <img
-          src={
-            'https://www.tabido.jp/storage/spots/2412/f1dd375c-5baf-4ef3-bfd0-ae9a6ca55cc1.jpg'
-          }
-          style={{ height: '50rem' }}
-        ></img> */}
+
         <div className="ani_logo"></div>
         <div className="ani_title">
           당신이 있는 여기서
