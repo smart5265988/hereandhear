@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import CategoryBlock from './CategoryBlock';
 import TodayBlock from './TodayBlock';
 import FreeBlock from './FreeBlock';
 import BannerBlock from '../banner/BannerBlock';
+import Loading from '../../common/Loading';
 import vod from '../../res/video/background_vod.mp4';
 const Home = () => {
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+    return () => {
+      clearTimeout();
+    };
+  }, []);
+
+  if (isLoading === true) {
+    return <Loading />;
+  }
+
   return (
     <div className="content">
       {/* <div style={{ paddingTop: '0.9333rem', marginBottom: '0.9333rem' }}>

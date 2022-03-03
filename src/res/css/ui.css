@@ -52,6 +52,28 @@ html::-webkit-scrollbar {
 .sec_title {
   font-size: 2rem;
 }
+
+.loading {
+  background: url('../images/icon/loading3.gif') no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 5rem;
+  height: 5rem;
+  z-index: 999;
+}
+
+.goback {
+  position: absolute;
+  z-index: 55;
+  width: 4rem;
+  height: 4rem;
+  background: url('../images/icon/right_dic_fff.svg') no-repeat;
+  background-position: center;
+  background-size: cover;
+  top: 2rem;
+  left: 2rem;
+  transform: rotate(180deg);
+}
 /* .content .top_image {
   background: url('../images/sapporo.jpg') no-repeat;
   background-size: cover;
@@ -78,26 +100,17 @@ html::-webkit-scrollbar {
   left: 50%;
   transform: translateX(-50%);
   top: 25%;
-  animation: subtitle 0.5s ease 2s forwards;
+  animation: subtitle 3s ease forwards;
   opacity: 0;
+  z-index: 55;
 }
-@keyframes subtitle {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+
 .ani_title {
   height: 3rem;
-  z-index: 3;
+  z-index: 55;
   font-size: 2rem;
   width: max-content;
-  animation: subtitle 0.5s ease 2s forwards;
+  animation: subtitle 3s ease forwards;
   opacity: 0;
   position: absolute;
   left: 50%;
@@ -108,6 +121,10 @@ html::-webkit-scrollbar {
 @keyframes subtitle {
   0% {
     opacity: 0;
+    transform: translateX(-5rem);
+  }
+  25% {
+    opacity: 0.25;
   }
   50% {
     opacity: 0.5;
@@ -162,7 +179,7 @@ html::-webkit-scrollbar {
 .banner {
   background-color: #26aae1;
   height: 8rem;
-  border-radius: 0.7333rem;
+  border-radius: 0.9333rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,7 +194,7 @@ html::-webkit-scrollbar {
     rgba(0, 0, 0, 1) 0%,
     rgba(0, 212, 255, 0) 100%
   );
-  z-index: '30';
+  z-index: 30;
 }
 
 /* category */
@@ -303,8 +320,11 @@ html::-webkit-scrollbar {
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-size: 1.4rem;
 }
-
+.login:hover {
+  background-color: #26aae1;
+}
 .myblock {
   height: 5rem;
   border: 2px solid #999;
@@ -313,19 +333,30 @@ html::-webkit-scrollbar {
   display: flex;
   align-items: center;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+.myblock span:nth-child(2) {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  background: url('../images/icon/right_dic.svg') no-repeat;
+  background-position: center;
 }
 
 .myblock:hover {
   border: 2px solid #fff;
+  background-color: #fff;
+  color: #000;
 }
 
 /* footer */
 #footer {
   position: fixed;
   bottom: 0;
-  z-index: 10;
+  z-index: 999;
   color: #fff;
   width: 100%;
   max-width: 50.8rem;
@@ -394,6 +425,7 @@ html::-webkit-scrollbar {
   bottom: 0;
   z-index: 200;
   background-color: rgba(0, 0, 0, 0.6);
+  display: none;
 }
 
 .modal_inner {
@@ -401,7 +433,7 @@ html::-webkit-scrollbar {
   max-width: 50.8rem;
   min-height: 100%;
   overflow: hidden;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 0 auto;
 }
 
@@ -420,13 +452,78 @@ html::-webkit-scrollbar {
   transform: translateX(-50%);
 }
 
-.player_modal {
+/* play */
+
+.play_content {
+  position: absolute;
+  z-index: 55;
+  width: 100%;
+}
+
+.play_content.title {
+  height: 7rem;
+  border: 1px solid yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 15rem;
+  font-size: 4rem;
+  letter-spacing: 0.3rem;
+}
+
+.play_content.text {
+  height: 15rem;
+  background-color: green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 40rem;
+}
+
+.play_background {
+  position: fixed;
   width: 100%;
   max-width: 50.8rem;
+  height: 100vh;
+}
+
+.button {
+  width: 100%;
+  height: 7rem;
+  position: absolute;
+  left: 50%;
+  top: 30rem;
+  transform: translateX(-50%);
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button button {
+  width: 5rem;
   height: 5rem;
+  font-size: 2rem;
+  border: 1px solid red;
+  margin-right: 3rem;
+}
+.button button:last-child {
+  margin-right: 0;
+}
+.player_modal {
+  width: 95%;
+  max-width: 47.8rem;
+  height: 7rem;
   /* position: absolute; */
   position: fixed;
-  background-color: red;
-  z-index: 999;
-  bottom: 5rem;
+  background-color: #26aae1cc;
+  z-index: 100;
+  bottom: 6rem;
+  border-radius: 0.7333rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
 }

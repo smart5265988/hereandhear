@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const LoginPopup = () => {
   const history = useHistory();
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+  }, []);
   const goLogin = () => {
     const pop = document.getElementById('popup_login');
     if (pop) {
       pop.style.display = 'none';
+      document.body.style.overflow = 'unset';
     }
     history.push('/my/myLogin');
   };
@@ -16,6 +20,7 @@ const LoginPopup = () => {
     const pop = document.getElementById('popup_login');
     if (pop) {
       pop.style.display = 'none';
+      document.body.style.overflow = 'unset';
     }
   };
   return (

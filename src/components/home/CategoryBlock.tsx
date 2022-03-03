@@ -17,7 +17,18 @@ const CategotyBlock = () => {
   };
 
   return (
-    <div className="sec_wrapper">
+    <div
+      className="sec_wrapper"
+      // style={{ border: '1px solid red' }}
+    >
+      <div
+        style={{
+          textAlign: 'center',
+          fontSize: '2rem',
+        }}
+      >
+        원하는 곳으로 떠나보세요.
+      </div>
       <div className="category">
         <ul>
           <li>

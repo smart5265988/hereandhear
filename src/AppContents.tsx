@@ -1,7 +1,7 @@
 import React, { useEffect, Suspense, useState, useCallback } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
-
+import Loading from './common/Loading';
 const Home = React.lazy(() => import('./components/home/Home'));
 const My = React.lazy(() => import('./components/my/My'));
 const PlayList = React.lazy(() => import('./components/playlist/PlayList'));
@@ -23,7 +23,7 @@ const Player = React.lazy(() => import('./components/player/Player'));
 function AppContents() {
   return (
     <div id="wrap" className="main">
-      <Suspense fallback={<div className="loading"></div>}>
+      <Suspense fallback={<Loading />}>
         <ErrorBoundary>
           <div id="container">
             <Switch>
@@ -42,7 +42,7 @@ function AppContents() {
           </div>
           {/* <Route component={Intro} /> */}
           {/* <Route component={DeeplinkPopup} /> */}
-          {/* <Route component={LoginPopUp} /> */}
+          <Route component={LoginPopUp} />
           {/* <Route component={NetworkErrorPopup} /> */}
           <Route component={PlayerPopup} />
         </ErrorBoundary>

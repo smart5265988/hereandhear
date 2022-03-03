@@ -1,11 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch, useHistory, NavLink } from 'react-router-dom';
 import City from './City';
 import Remeber from './Remember';
 import Space from './Space';
 import Nature from './Nature';
+import Loading from '../../common/Loading';
 
 const Category = () => {
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+    return () => {
+      clearTimeout();
+    };
+  }, []);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    const data = history.location.pathname.split('/');
+    const category = data[2];
+    const id = data[3];
+    console.log(category, id);
+    if (id === undefined) {
+      history.push('/category/city');
+    }
+  }, []);
+
+  if (isLoading === true) {
+    return <Loading />;
+  }
   return (
     <div className="sec_wrapper">
       <div style={{ paddingTop: '0.9333rem', marginBottom: '0.9333rem' }}>
