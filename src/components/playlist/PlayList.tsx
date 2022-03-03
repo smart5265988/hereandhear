@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Loading from '../../common/Loading';
 
 const PlayList = () => {
+  const history = useHistory();
   const [isLoading, setLoading] = useState(true);
+  const [list, setList] = useState([]);
+  const [isLogin, setLogin] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -14,6 +18,24 @@ const PlayList = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isLogin === false) {
+      const poplogin = document.getElementById('popup_login');
+      poplogin?.classList.add('pop');
+    }
+  }, [isLogin, history]);
+
+  useEffect(() => {
+    const poplogin = document.getElementById('popup_login');
+    if (poplogin?.classList.contains('pop') && isLogin === true) {
+      poplogin.classList.remove('pop');
+    }
+  }, [isLogin, history]);
+
+  const goPage = () => {
+    history.push('./category/city');
+  };
+
   if (isLoading === true) {
     return <Loading />;
   }
@@ -22,7 +44,14 @@ const PlayList = () => {
       <div style={{ paddingTop: '0.9333rem', marginBottom: '0.9333rem' }}>
         <h1 className="categoryTitle inner">BookMark</h1>
       </div>
-      <div className="inner">저장된 리스트가 없습니다.</div>
+      {list.length === 0 ? (
+        <div className="nodata inner">
+          저장된 리스트가 없습니다.
+          <button onClick={goPage}>Category로 이동</button>
+        </div>
+      ) : (
+        <div>list</div>
+      )}
     </div>
   );
 };

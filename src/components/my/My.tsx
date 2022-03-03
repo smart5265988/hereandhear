@@ -9,21 +9,21 @@ import MyContetent from './MyContnent';
 import Loading from '../../common/Loading';
 
 const My = () => {
-  const [isLoading, setLoading] = useState(true);
+  // const [isLoading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-    return () => {
-      clearTimeout();
-    };
-  }, []);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 500);
+  //   return () => {
+  //     clearTimeout();
+  //   };
+  // }, []);
 
-  if (isLoading === true) {
-    return <Loading />;
-  }
+  // if (isLoading === true) {
+  //   return <Loading />;
+  // }
 
   return (
     <div className="content">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import CategoryBlock from './CategoryBlock';
 import TodayBlock from './TodayBlock';
 import FreeBlock from './FreeBlock';
@@ -7,6 +7,7 @@ import BannerBlock from '../banner/BannerBlock';
 import Loading from '../../common/Loading';
 import vod from '../../res/video/background_vod.mp4';
 const Home = () => {
+  const history = useHistory();
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,6 +19,13 @@ const Home = () => {
       clearTimeout();
     };
   }, []);
+
+  useEffect(() => {
+    const poplogin = document.getElementById('popup_login');
+    if (poplogin?.classList.contains('pop')) {
+      poplogin.classList.remove('pop');
+    }
+  }, [history]);
 
   if (isLoading === true) {
     return <Loading />;
@@ -54,11 +62,11 @@ const Home = () => {
         </div>
         <video style={{ width: '100%' }} src={vod} muted loop autoPlay></video>
       </div>
-      <Route render={(props) => <CategoryBlock />} />
-      <Route render={(props) => <FreeBlock />} />
-      <Route component={BannerBlock}></Route>
-      <Route render={(props) => <TodayBlock />} />
-      <Route component={BannerBlock}></Route>
+      <Route render={() => <CategoryBlock />} />
+      <Route render={() => <FreeBlock />} />
+      <Route render={() => <BannerBlock bannerType="image" />} />
+      <Route render={() => <TodayBlock />} />
+      <Route render={() => <BannerBlock bannerType="text" />} />
     </div>
   );
 };

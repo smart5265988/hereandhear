@@ -24,34 +24,57 @@ const FreeBlock = () => {
             }}
             onClick={() => goPlayer('city', '1')}
           >
-            1
+            <div className="block_filter"></div>
+            <div className="free_category">City</div>
+            <div className="free_title">삿포로 청의 호수</div>
           </li>
+
           <li
             style={{
               background: `url(${img}) no-repeat`,
               backgroundSize: 'cover',
             }}
-            onClick={() => goPlayer('remember', '1')}
+            onClick={() => goPlayer('city', '1')}
           >
-            1
+            <div className="block_filter"></div>
+            <div className="free_category">City</div>
+            <div className="free_title">삿포로 청의 호수</div>
           </li>
+
           <li
             style={{
               background: `url(${img}) no-repeat`,
               backgroundSize: 'cover',
             }}
-            onClick={() => goPlayer('nature', '1')}
+            onClick={() => goPlayer('city', '1')}
           >
-            1
+            <div className="block_filter"></div>
+            <div className="free_category">City</div>
+            <div className="free_title">삿포로 청의 호수</div>
           </li>
+
           <li
             style={{
               background: `url(${img}) no-repeat`,
               backgroundSize: 'cover',
             }}
-            onClick={() => goPlayer('space', '1')}
+            onClick={() => goPlayer('city', '1')}
           >
-            1
+            <div className="block_filter"></div>
+            <div className="free_category">City</div>
+            <div className="free_title">삿포로 청의 호수</div>
+          </li>
+
+          <li
+            style={{
+              background: `url(${img}) no-repeat`,
+              backgroundSize: 'cover',
+            }}
+            onClick={() => goPlayer('city', '1')}
+          >
+            <div className="block_filter"></div>
+            <div className="free_category">City</div>
+            <div className="free_title">삿포로 청의 호수</div>
           </li>
         </ul>
       </div>

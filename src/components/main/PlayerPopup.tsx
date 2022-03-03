@@ -5,7 +5,7 @@ import sample from '../../res/audio/japan.mp3';
 
 const PlayerPopup = () => {
   const history = useHistory();
-
+  const [isPlay, setPlay] = useState(true);
   const goPlayer = (e: any) => {
     // e.stopPropagation();
     // const pop = document.getElementById('popup_player');
@@ -16,22 +16,29 @@ const PlayerPopup = () => {
   };
 
   const audioRef = useRef<HTMLAudioElement>(null);
+  let audio = audioRef.current;
+  let popPlayer = document.getElementById('popup_player');
+  let audio2 = document.getElementById('audio2') as HTMLAudioElement;
 
-  const play = (data: string) => {
-    const audio = audioRef.current;
-    const playerPop = document.getElementById('popup_player');
+  const play = () => {
+    setPlay(true);
     if (audio) {
       audio.volume = 0.3;
-
-      if (data === 'play') {
-        audio.play();
-      } else if (data === 'pause') {
-        audio.pause();
-        if (playerPop) {
-          playerPop.style.display = 'none';
-        }
-      }
+      audio.play();
     }
+  };
+
+  const pause = () => {
+    setPlay(false);
+
+    if (audio) {
+      audio.pause();
+    }
+  };
+
+  const close = () => {
+    popPlayer?.classList.remove('pop');
+    audio2.load();
   };
 
   return (
@@ -45,6 +52,7 @@ const PlayerPopup = () => {
         controlsList="nodownload"
         // controls
         src={sample}
+        id="audio2"
       ></audio>
 
       <div
@@ -84,16 +92,29 @@ const PlayerPopup = () => {
           justifyContent: 'space-evenly',
         }}
       >
-        <button
-          style={{
-            width: '5rem',
-            height: '5rem',
-            background: 'green',
-          }}
-          onClick={() => play('play')}
-        >
-          재생
-        </button>
+        {isPlay === false ? (
+          <button
+            style={{
+              width: '5rem',
+              height: '5rem',
+              background: 'green',
+            }}
+            onClick={() => play()}
+          >
+            재생
+          </button>
+        ) : (
+          <button
+            style={{
+              width: '5rem',
+              height: '5rem',
+              background: 'green',
+            }}
+            onClick={() => pause()}
+          >
+            정지
+          </button>
+        )}
         <button
           style={{
             width: '5rem',
@@ -101,9 +122,9 @@ const PlayerPopup = () => {
             border: '1px solid red',
             background: 'tomato',
           }}
-          onClick={() => play('pause')}
+          onClick={() => close()}
         >
-          정지
+          X
         </button>
       </div>
     </div>

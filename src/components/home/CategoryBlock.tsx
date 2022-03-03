@@ -38,10 +38,10 @@ const CategotyBlock = () => {
             <div onClick={() => detailList('nature')}></div>
           </li>
           <li>
-            <div>city</div>
-            <div>remember</div>
-            <div>space</div>
-            <div>nature</div>
+            <div>City</div>
+            <div>Remember</div>
+            <div>Space</div>
+            <div>Nature</div>
           </li>
         </ul>
       </div>

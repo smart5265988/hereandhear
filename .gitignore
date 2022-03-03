@@ -24,3 +24,4 @@ yarn-error.log*
 
 # media file
 *.mp4
+*.mp3

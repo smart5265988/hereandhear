@@ -7,8 +7,9 @@ import Nature from './Nature';
 import Loading from '../../common/Loading';
 
 const Category = () => {
+  const history = useHistory();
   const [isLoading, setLoading] = useState(true);
-
+  const [isLogin, setLogin] = useState(true);
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -19,17 +20,28 @@ const Category = () => {
     };
   }, []);
 
-  const history = useHistory();
+  useEffect(() => {
+    const poplogin = document.getElementById('popup_login');
+    if (poplogin?.classList.contains('pop') && isLogin === true) {
+      poplogin.classList.remove('pop');
+    }
+  }, [isLogin, history]);
+
+  useEffect(() => {
+    if (isLogin === false) {
+      const poplogin = document.getElementById('popup_login');
+      poplogin?.classList.add('pop');
+    }
+  }, [isLogin, history]);
 
   useEffect(() => {
     const data = history.location.pathname.split('/');
     const category = data[2];
-    const id = data[3];
-    console.log(category, id);
-    if (id === undefined) {
+    console.log(category);
+    if (category === undefined) {
       history.push('/category/city');
     }
-  }, []);
+  }, [history]);
 
   if (isLoading === true) {
     return <Loading />;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-
+import * as CONST from '../../const';
 const MyContent = () => {
   const history = useHistory();
 
@@ -71,7 +71,13 @@ const MyContent = () => {
           </div>
           <div className="myblock inner">
             <span>버전정보</span>
-            <span></span>
+            <div
+              style={{
+                opacity: '0.6',
+              }}
+            >
+              {CONST.version}
+            </div>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import Loading from '../../common/Loading';
 const Player = () => {
   const history = useHistory();
   const [isLoading, setLoading] = useState(true);
-
+  const [isPlay, setPlay] = useState(false);
   useEffect(() => {
     const data = history.location.pathname.split('/');
     const category = data[2];
@@ -27,14 +27,23 @@ const Player = () => {
       clearTimeout();
     };
   }, []);
+  let audio2 = document.getElementById('audio2') as HTMLAudioElement;
 
   const play = () => {
-    console.log('play');
+    audio2.play();
+    setPlay(true);
     const popPlayer = document.getElementById('popup_player');
     if (popPlayer) {
-      popPlayer.style.display = 'flex';
+      // popPlayer.style.display = 'flex';
+      popPlayer.classList.add('pop');
     }
   };
+
+  const pause = () => {
+    audio2.pause();
+    setPlay(false);
+  };
+
   const addList = () => {
     console.log('addList');
   };
@@ -56,10 +65,17 @@ const Player = () => {
         }}
       ></div>
       <div>
-        <div className="play_content title inner">title</div>
-        <div className="play_content text inner">
-          설명ssdasdasdasdasdadasdasdasdasdas
+        <div className="play_content title inner">
+          <p>서울 광화문</p>
+          <span>서울, 대한민국</span>
         </div>
+        <div className="play_content text inner">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic quia
+          ducimus suscipit voluptatum! Provident inventore nemo quod ut illo
+          vitae est minima odit. Quaerat earum tenetur ut repudiandae eum
+          voluptatum!
+        </div>
+
         <div
           className="play_background"
           style={{
@@ -69,12 +85,48 @@ const Player = () => {
           }}
         ></div>
         <div className="button">
-          <button onClick={() => play()}>재생</button>
-          <button onClick={() => play()}>정지</button>
-          <button onClick={() => addList()}>추가</button>
+          {isPlay === false ? (
+            <div onClick={() => play()}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="#fff"
+                id="Filled"
+                viewBox="0 0 24 24"
+                width="30"
+                height="30"
+              >
+                <path d="M20.492,7.969,10.954.975A5,5,0,0,0,3,5.005V19a4.994,4.994,0,0,0,7.954,4.03l9.538-6.994a5,5,0,0,0,0-8.062Z" />
+              </svg>
+            </div>
+          ) : (
+            <div onClick={() => pause()}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="#fff"
+                id="Filled"
+                viewBox="0 0 24 24"
+                width="30"
+                height="30"
+              >
+                <path d="M6.5,0A3.5,3.5,0,0,0,3,3.5v17a3.5,3.5,0,0,0,7,0V3.5A3.5,3.5,0,0,0,6.5,0Z" />
+                <path d="M17.5,0A3.5,3.5,0,0,0,14,3.5v17a3.5,3.5,0,0,0,7,0V3.5A3.5,3.5,0,0,0,17.5,0Z" />
+              </svg>
+            </div>
+          )}
+          <div onClick={() => addList()}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="Outline"
+              viewBox="0 0 24 24"
+              width="30"
+              height="30"
+              fill="#fff"
+            >
+              <path d="M20.137,24a2.8,2.8,0,0,1-1.987-.835L12,17.051,5.85,23.169a2.8,2.8,0,0,1-3.095.609A2.8,2.8,0,0,1,1,21.154V5A5,5,0,0,1,6,0H18a5,5,0,0,1,5,5V21.154a2.8,2.8,0,0,1-1.751,2.624A2.867,2.867,0,0,1,20.137,24ZM6,2A3,3,0,0,0,3,5V21.154a.843.843,0,0,0,1.437.6h0L11.3,14.933a1,1,0,0,1,1.41,0l6.855,6.819a.843.843,0,0,0,1.437-.6V5a3,3,0,0,0-3-3Z" />
+            </svg>
+          </div>
         </div>
       </div>
-      {/* <div className="sec_wrapper">Player</div> */}
     </div>
   );
 };
