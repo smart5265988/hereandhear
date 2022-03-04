@@ -1,11 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  setPersistence,
+  browserSessionPersistence,
+} from 'firebase/auth';
+import { auth } from '../../firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserInfo } from '../../redux/reducers/userInfo';
 const MyLogin = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state: any) => state.userInfoReducer);
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const [errMessage, setErrMessage] = useState('');
-  const history = useHistory();
+  const [user, setUser] = useState({}); // 코드 추가
+
+  onAuthStateChanged(auth, (currentUser: any) => {
+    setUser(currentUser);
+  }); // 코드 추가
+
+  const login = () => {
+    setPersistence(auth, browserSessionPersistence)
+      .then(() => {
+        return signInWithEmailAndPassword(auth, id, password);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // try {
+    //   const user = await signInWithEmailAndPassword(auth, id, password);
+
+    // } catch (error) {
+    //   alert('아이디와 비밀번호를 확인해주세요');
+    // }
+  };
+
+  const logout = async () => {
+    await signOut(auth);
+  };
   const handleId = (e: any) => {
     setId(e.target.value);
   };
@@ -26,13 +61,31 @@ const MyLogin = () => {
         borderTop: 'none',
       }}
     >
-      <div className="goback" onClick={goback}></div>
-      <div
+      {/* <div className="goback" onClick={goback}></div> */}
+      {/* <div
         className="filter"
         style={{
           height: '100vh',
         }}
-      ></div>
+      ></div> */}
+      <h3>Login</h3>
+      <input
+        placeholder="Email"
+        onChange={(e) => {
+          setId(e.target.value);
+        }}
+      />
+      <input
+        placeholder="Password"
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
+      />
+      <button onClick={login}>Login</button>
+      <br />
+      <br />
+      <button onClick={logout}>로그아웃</button>
+
       <div
         style={{
           // marginTop: '8rem',

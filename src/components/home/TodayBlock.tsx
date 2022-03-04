@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import img from '../../res/images/sapporo.jpg';
 import { axiosGet } from '../../util/axiosGet';
 import Loading from '../../common/Loading';
-
+import { SEESION } from '../../const';
 interface Recommend {
   audio: string;
   title: string;
@@ -13,9 +13,19 @@ interface Recommend {
 
 const TodayBlock = () => {
   const history = useHistory();
-  const [isLogin, setLogin] = useState(true);
+  const [isLogin, setLogin] = useState(false);
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const ck: any = sessionStorage.getItem(SEESION);
+    console.log(JSON.parse(ck));
+    if (ck !== null) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  }, []);
 
   useEffect(() => {
     setLoading(true);

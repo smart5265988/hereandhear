@@ -6,6 +6,7 @@ import MyNotice from './MyNotice';
 import MyLogin from './MyLogin';
 import MyPrivacy from './MyPrivacy';
 import MyContetent from './MyContnent';
+import MySingUp from './MySingUp';
 import Loading from '../../common/Loading';
 
 const My = () => {
@@ -29,6 +30,7 @@ const My = () => {
     <div className="content">
       <Switch>
         <Route path="/my/myLogin" component={MyLogin} />
+        <Route path="/my/mySignup" component={MySingUp} />
         <Route path="/my/myFaq" component={MyFaq} />
         <Route path="/my/myNotice" component={MyNotice} />
         <Route path="/my/myTerms" component={MyTerms} />

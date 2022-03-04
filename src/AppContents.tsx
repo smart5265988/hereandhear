@@ -2,6 +2,7 @@ import React, { useEffect, Suspense, useState, useCallback } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
 import Loading from './common/Loading';
+
 const Home = React.lazy(() => import('./components/home/Home'));
 const My = React.lazy(() => import('./components/my/My'));
 const PlayList = React.lazy(() => import('./components/playlist/PlayList'));

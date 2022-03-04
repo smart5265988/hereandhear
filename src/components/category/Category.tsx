@@ -5,19 +5,20 @@ import Remeber from './Remember';
 import Space from './Space';
 import Nature from './Nature';
 import Loading from '../../common/Loading';
-
+import { SEESION } from '../../const';
 const Category = () => {
   const history = useHistory();
-  const [isLoading, setLoading] = useState(true);
-  const [isLogin, setLogin] = useState(true);
+  const [isLoading, setLoading] = useState(false);
+  const [isLogin, setLogin] = useState(false);
+
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-    return () => {
-      clearTimeout();
-    };
+    const ck: any = sessionStorage.getItem(SEESION);
+    console.log(JSON.parse(ck));
+    if (ck !== null) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
   }, []);
 
   useEffect(() => {

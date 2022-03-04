@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Loading from '../../common/Loading';
+import { SEESION } from '../../const';
 
 const PlayList = () => {
   const history = useHistory();
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const [list, setList] = useState([]);
   const [isLogin, setLogin] = useState(true);
 
@@ -16,6 +17,16 @@ const PlayList = () => {
     return () => {
       clearTimeout();
     };
+  }, []);
+
+  useEffect(() => {
+    const ck: any = sessionStorage.getItem(SEESION);
+    console.log(JSON.parse(ck));
+    if (ck !== null) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
   }, []);
 
   useEffect(() => {

@@ -1,32 +1,32 @@
-const CH_USER_ID = 'USERINFO/CH_USER_IDD';
-const CH_USER_LOGIN = 'USERINFO/CH_USER_LOGIN';
+const CH_USER_INFO = 'USERINFO/CH_USER_INFO';
+// const CH_USER_LOGIN = 'USERINFO/CH_USER_LOGIN';
 
-export const setUserlId = (userId: string) => ({
-  type: CH_USER_ID,
-  data: userId,
+export const setUserInfo = (uid: string, isLogin: boolean) => ({
+  type: CH_USER_INFO,
+  data: {
+    uid,
+    isLogin,
+  },
 });
-export const setSpecialVodTitle = (login: boolean) => ({
-  type: CH_USER_LOGIN,
-  data: login,
-});
+// export const setIsLogin = (login: boolean) => ({
+//   type: CH_USER_LOGIN,
+//   data: login,
+// });
 
 const initialState = {
-  userId: null,
-  login: false,
+  userId: '',
+  isLogin: false,
 };
 
 const userInfoReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case CH_USER_ID:
+    case CH_USER_INFO:
       return {
         ...state,
-        userId: action.data,
+        userId: action.data.uid,
+        isLogin: action.data.isLogin,
       };
-    case CH_USER_LOGIN:
-      return {
-        ...state,
-        login: action.data,
-      };
+
     default:
       return state;
   }
