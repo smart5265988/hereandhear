@@ -4,3 +4,5 @@ export const cookieInfo = {
 };
 
 export const version = '0.220301';
+
+export const URL = 'https://project-ver2-9966b-default-rtdb.firebaseio.com/';

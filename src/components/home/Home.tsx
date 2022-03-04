@@ -52,7 +52,15 @@ const Home = () => {
           <br />
           <b>Here & Hear</b>
         </div>
-        <video style={{ width: '100%' }} src={vod} muted loop autoPlay></video>
+        <video
+          style={{ width: '100%' }}
+          src={
+            'https://firebasestorage.googleapis.com/v0/b/project-ver2-9966b.appspot.com/o/video%2Fbackground_vod2.mp4?alt=media&token=a2d15842-c461-43e4-b7b4-be232e1e6c31'
+          }
+          muted
+          loop
+          autoPlay
+        ></video>
       </div>
       <Route render={() => <CategoryBlock />} />
       <Route render={() => <FreeBlock />} />

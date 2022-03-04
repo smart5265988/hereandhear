@@ -1,14 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import img from '../../res/images/sapporo.jpg';
+// import img from '../../res/images/sapporo.jpg';
+import { axiosGet } from '../../util/axiosGet';
+import Loading from '../../common/Loading';
+
+interface Free {
+  audio: string;
+  title: string;
+  category: string;
+  img: string;
+}
 
 const FreeBlock = () => {
   const history = useHistory();
+  const [data, setData] = useState<any[]>([]);
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    axiosGet('/free.json')
+      .then((list: any) => {
+        if (list.status === 200) {
+          setData(list.data);
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        setData([]);
+        setLoading(false);
+      });
+  }, []);
 
   const goPlayer = (category: string, id: string) => {
     history.push(`/player/${category}/${id}`);
   };
 
+  if (isLoading === true) {
+    return <Loading />;
+  }
+  if (data.length === 0) {
+    return <></>;
+  }
   return (
     <div className="sec_wrapper">
       <div className="title_hd">
@@ -17,65 +49,22 @@ const FreeBlock = () => {
 
       <div className="home_scroll inner">
         <ul>
-          <li
-            style={{
-              background: `url(${img}) no-repeat`,
-              backgroundSize: 'cover',
-            }}
-            onClick={() => goPlayer('city', '1')}
-          >
-            <div className="block_filter"></div>
-            <div className="free_category">City</div>
-            <div className="free_title">삿포로 청의 호수</div>
-          </li>
-
-          <li
-            style={{
-              background: `url(${img}) no-repeat`,
-              backgroundSize: 'cover',
-            }}
-            onClick={() => goPlayer('city', '1')}
-          >
-            <div className="block_filter"></div>
-            <div className="free_category">City</div>
-            <div className="free_title">삿포로 청의 호수</div>
-          </li>
-
-          <li
-            style={{
-              background: `url(${img}) no-repeat`,
-              backgroundSize: 'cover',
-            }}
-            onClick={() => goPlayer('city', '1')}
-          >
-            <div className="block_filter"></div>
-            <div className="free_category">City</div>
-            <div className="free_title">삿포로 청의 호수</div>
-          </li>
-
-          <li
-            style={{
-              background: `url(${img}) no-repeat`,
-              backgroundSize: 'cover',
-            }}
-            onClick={() => goPlayer('city', '1')}
-          >
-            <div className="block_filter"></div>
-            <div className="free_category">City</div>
-            <div className="free_title">삿포로 청의 호수</div>
-          </li>
-
-          <li
-            style={{
-              background: `url(${img}) no-repeat`,
-              backgroundSize: 'cover',
-            }}
-            onClick={() => goPlayer('city', '1')}
-          >
-            <div className="block_filter"></div>
-            <div className="free_category">City</div>
-            <div className="free_title">삿포로 청의 호수</div>
-          </li>
+          {data.map((item: Free, index) => {
+            return (
+              <li
+                style={{
+                  background: `url(${item.img}) no-repeat`,
+                  backgroundSize: 'cover',
+                }}
+                onClick={() => goPlayer(item.category.toLowerCase(), '1')}
+                key={`free${index}`}
+              >
+                <div className="block_filter"></div>
+                <div className="free_category">{item.category}</div>
+                <div className="free_title">{item.title}</div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

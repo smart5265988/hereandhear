@@ -51,7 +51,9 @@ const PlayerPopup = () => {
         ref={audioRef}
         controlsList="nodownload"
         // controls
-        src={sample}
+        src={
+          'https://firebasestorage.googleapis.com/v0/b/project-ver2-9966b.appspot.com/o/audio%2Fwind.mp3?alt=media&token=e56b42c8-0d51-4c02-a80b-6f0a164f7167'
+        }
         id="audio2"
       ></audio>
 

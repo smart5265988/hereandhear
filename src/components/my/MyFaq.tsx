@@ -1,12 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import * as firebase from '../../const/index';
+import { axiosGet } from '../../util/axiosGet';
+import Loading from '../../common/Loading';
+
+interface Faq {
+  text: string;
+  no: string;
+  title: string;
+}
 
 const MyFaq = () => {
   const history = useHistory();
+  const [data, setData] = useState<any[]>([]);
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    axiosGet('/faq.json')
+      .then((list: any) => {
+        if (list.status === 200) {
+          setData(list.data);
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        setData([]);
+        setLoading(false);
+      });
+  }, []);
 
   const goback = () => {
     history.goBack();
   };
+
+  if (isLoading === true) {
+    return <Loading />;
+  }
+
   return (
     <div className="sec_wrapper">
       <div className="goback2" onClick={goback}></div>
@@ -17,7 +48,7 @@ const MyFaq = () => {
           marginBottom: '0.9333rem',
         }}
       >
-        <h1 className="categoryTitle inner">FAQ</h1>
+        <h1 className="categoryTitle inner">Faq</h1>
       </div>
       <div className="inner" style={{ marginBottom: '0.9333rem' }}>
         <ul
@@ -25,41 +56,34 @@ const MyFaq = () => {
             paddingTop: '2rem',
           }}
         >
-          <li className="notice_list">
-            <input type="checkbox" id="notice1"></input>
-            <label htmlFor="notice1" className="notice_title">
-              <span>Q1</span>
-              <span>유료 서비스</span>
-              <em></em>
-            </label>
-            <div className="notice_text">
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Perspiciatis ipsa rerum obcaecati ullam fuga quam consequuntur
-                soluta impedit, vitae recusandae esse veritatis assumenda
-                dolorem doloribus non, provident praesentium exercitationem
-                iusto!
-              </p>
-            </div>
-          </li>
-
-          <li className="notice_list">
-            <input type="checkbox" id="notice2"></input>
-            <label htmlFor="notice2" className="notice_title">
-              <span>Q2</span>
-              <span>회원가입</span>
-              <em></em>
-            </label>
-            <div className="notice_text">
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Perspiciatis ipsa rerum obcaecati ullam fuga quam consequuntur
-                soluta impedit, vitae recusandae esse veritatis assumenda
-                dolorem doloribus non, provident praesentium exercitationem
-                iusto!
-              </p>
-            </div>
-          </li>
+          {data.length > 0 ? (
+            data.map((item: Faq, index) => {
+              return (
+                <li className="notice_list" key={`notice${index}`}>
+                  <input type="checkbox" id={`notice${index}`}></input>
+                  <label htmlFor={`notice${index}`} className="notice_title">
+                    <span>{item.no}</span>
+                    <span>{item.title}</span>
+                    <em></em>
+                  </label>
+                  <div className="notice_text">
+                    <p>{item.text}</p>
+                  </div>
+                </li>
+              );
+            })
+          ) : (
+            <li className="notice_list">
+              <input type="checkbox" id={`notice`}></input>
+              <label
+                htmlFor={`notice`}
+                className="notice_title"
+                style={{ textAlign: 'center', fontSize: '2rem' }}
+              >
+                준비 중입니다.
+              </label>
+            </li>
+          )}
         </ul>
       </div>
     </div>

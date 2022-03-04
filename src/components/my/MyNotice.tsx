@@ -1,12 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import * as firebase from '../../const/index';
+import { axiosGet } from '../../util/axiosGet';
+import Loading from '../../common/Loading';
+
+interface Notice {
+  text: string;
+  date: string;
+  title: string;
+}
 
 const MyNotice = () => {
   const history = useHistory();
+  const [data, setData] = useState<any[]>([]);
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    axiosGet('/notice.json')
+      .then((list: any) => {
+        if (list.status === 200) {
+          setData(list.data.reverse());
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        setData([]);
+        setLoading(false);
+      });
+  }, []);
 
   const goback = () => {
     history.goBack();
   };
+
+  if (isLoading === true) {
+    return <Loading />;
+  }
+
   return (
     <div className="sec_wrapper">
       <div className="goback2" onClick={goback}></div>
@@ -25,65 +56,34 @@ const MyNotice = () => {
             paddingTop: '2rem',
           }}
         >
-          <li className="notice_list">
-            <input type="checkbox" id="notice1"></input>
-            <label htmlFor="notice1" className="notice_title">
-              <span>2022-03-03</span>
-              <span>음원 업데이트 공지사항</span>
-              <em></em>
-            </label>
-            <div className="notice_text">
-              <p>
-                {' '}
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Perspiciatis ipsa rerum obcaecati ullam fuga quam consequuntur
-                soluta impedit, vitae recusandae esse veritatis assumenda
-                dolorem doloribus non, provident praesentium exercitationem
-                iusto!
-              </p>
-            </div>
-          </li>
-
-          <li className="notice_list">
-            <input type="checkbox" id="notice2"></input>
-            <label htmlFor="notice2" className="notice_title">
-              <span>2022-03-03</span>
-              <span>음원 업데이트 공지사항</span>
-              <em></em>
-            </label>
-            <div className="notice_text">
-              <p>
-                {' '}
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Perspiciatis ipsa rerum obcaecati ullam fuga quam consequuntur
-                soluta impedit, vitae recusandae esse veritatis assumenda
-                dolorem doloribus non, provident praesentium exercitationem
-                iusto!
-              </p>
-            </div>
-          </li>
-
-          <li className="notice_list">
-            <input type="checkbox" id="notice3"></input>
-            <label htmlFor="notice3" className="notice_title">
-              <span>2022-03-03</span>
-              <span>음원 업데이트 공지사항</span>
-              <em></em>
-            </label>
-            <div className="notice_text">
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Perspiciatis ipsa rerum obcaecati ullam fuga quam consequuntur
-                soluta impedit, vitae recusandae esse veritatis assumenda
-                dolorem doloribus non, provident praesentium exercitationem
-                iusto! Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Perspiciatis ipsa rerum obcaecati ullam fuga quam consequuntur
-                soluta impedit, vitae recusandae esse veritatis assumenda
-                dolorem doloribus non, provident praesentium exercitationem
-                iusto!
-              </p>
-            </div>
-          </li>
+          {data.length > 0 ? (
+            data.map((item: Notice, index) => {
+              return (
+                <li className="notice_list" key={`notice${index}`}>
+                  <input type="checkbox" id={`notice${index}`}></input>
+                  <label htmlFor={`notice${index}`} className="notice_title">
+                    <span>{item.date}</span>
+                    <span>{item.title}</span>
+                    <em></em>
+                  </label>
+                  <div className="notice_text">
+                    <p>{item.text}</p>
+                  </div>
+                </li>
+              );
+            })
+          ) : (
+            <li className="notice_list">
+              <input type="checkbox" id={`notice`}></input>
+              <label
+                htmlFor={`notice`}
+                className="notice_title"
+                style={{ textAlign: 'center', fontSize: '2rem' }}
+              >
+                공지사항이 없습니다.
+              </label>
+            </li>
+          )}
         </ul>
       </div>
     </div>
