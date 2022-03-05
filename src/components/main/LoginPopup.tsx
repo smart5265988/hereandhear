@@ -1,12 +1,24 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import { setLoginPop } from '../../redux/reducers/popup';
 const LoginPopup = () => {
+  let poplogin = document.getElementById('popup_login');
   const history = useHistory();
+  const dispatch = useDispatch();
+  const popInfo = useSelector((state: any) => state.popupInfoReducer);
 
   useEffect(() => {
-    // document.body.style.overflow = 'hidden';
-  }, []);
+    // console.log(popInfo, ':::');
+
+    if (popInfo.loginPop === true) {
+      poplogin?.classList.add('pop');
+    }
+    if (popInfo.loginPop === false) {
+      poplogin?.classList.remove('pop');
+    }
+  }, [popInfo.loginPop]);
+
   const goLogin = () => {
     const pop = document.getElementById('popup_login');
     if (pop) {
@@ -17,10 +29,7 @@ const LoginPopup = () => {
   };
 
   const closePop = () => {
-    const poplogin = document.getElementById('popup_login');
-    if (poplogin) {
-      poplogin.classList.remove('pop');
-    }
+    dispatch(setLoginPop(false));
     history.push('/home');
   };
   return (

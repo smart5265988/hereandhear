@@ -4,5 +4,6 @@ import { combineReducers } from 'redux';
 // import appInfoReducer from './app';
 // import shareInfoReducer from './share';
 import userInfoReducer from './userInfo';
+import popupInfoReducer from './popup';
 
-export default combineReducers({ userInfoReducer });
+export default combineReducers({ userInfoReducer, popupInfoReducer });

@@ -9,7 +9,6 @@ import vod from '../../res/video/background_vod2.mp4';
 const Home = () => {
   const history = useHistory();
   const [isLoading, setLoading] = useState(true);
-
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {

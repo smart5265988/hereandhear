@@ -31,8 +31,10 @@ const FreeBlock = () => {
       });
   }, []);
 
-  const goPlayer = (category: string, id: string) => {
-    history.push(`/player/${category}/${id}`);
+  const goPlayer = (item: any) => {
+    // console.log(item);
+    sessionStorage.setItem('data', JSON.stringify(item));
+    history.push(`/player/${item.category}/free`);
   };
 
   if (isLoading === true) {
@@ -56,7 +58,7 @@ const FreeBlock = () => {
                   background: `url(${item.img}) no-repeat`,
                   backgroundSize: 'cover',
                 }}
-                onClick={() => goPlayer(item.category.toLowerCase(), '1')}
+                onClick={() => goPlayer(item)}
                 key={`free${index}`}
               >
                 <div className="block_filter"></div>

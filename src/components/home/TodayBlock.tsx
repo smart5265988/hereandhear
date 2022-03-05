@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import img from '../../res/images/sapporo.jpg';
+import { useDispatch } from 'react-redux';
 import { axiosGet } from '../../util/axiosGet';
 import Loading from '../../common/Loading';
 import { SEESION } from '../../const';
+import { setLoginPop } from '../../redux/reducers/popup';
+
 interface Recommend {
   audio: string;
   title: string;
@@ -16,10 +19,11 @@ const TodayBlock = () => {
   const [isLogin, setLogin] = useState(false);
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const ck: any = sessionStorage.getItem(SEESION);
-    console.log(JSON.parse(ck));
+    // console.log(JSON.parse(ck));
     if (ck !== null) {
       setLogin(true);
     } else {
@@ -44,9 +48,10 @@ const TodayBlock = () => {
 
   const goPlayer = (category: string, id: string) => {
     if (isLogin === false) {
-      console.log('today_block ck');
-      const poplogin = document.getElementById('popup_login');
-      poplogin?.classList.add('pop');
+      // console.log('today_block ck');
+      // const poplogin = document.getElementById('popup_login');
+      // poplogin?.classList.add('pop');
+      dispatch(setLoginPop(true));
     } else {
       history.push(`/player/${category}/${id}`);
     }

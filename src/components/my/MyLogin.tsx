@@ -6,6 +6,8 @@ import {
   signOut,
   setPersistence,
   browserSessionPersistence,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,10 +20,12 @@ const MyLogin = () => {
   const [password, setPassword] = useState('');
   const [user, setUser] = useState({}); // 코드 추가
 
+  //로그인 상태 확인 (파이어베이스)
   onAuthStateChanged(auth, (currentUser: any) => {
     setUser(currentUser);
   }); // 코드 추가
 
+  //일반 이메일 로그인
   const login = () => {
     setPersistence(auth, browserSessionPersistence)
       .then(() => {
@@ -36,6 +40,24 @@ const MyLogin = () => {
     // } catch (error) {
     //   alert('아이디와 비밀번호를 확인해주세요');
     // }
+  };
+
+  //구글로그인
+  const googleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+
+    const data = await signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+
+        console.log('googleLogin ::', credential, token, user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const logout = async () => {
@@ -125,6 +147,7 @@ const MyLogin = () => {
             height: '6rem',
             background: 'blue',
           }}
+          onClick={googleLogin}
         >
           구글로 계속하기
         </button>

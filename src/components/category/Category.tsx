@@ -5,11 +5,15 @@ import Remeber from './Remember';
 import Space from './Space';
 import Nature from './Nature';
 import Loading from '../../common/Loading';
+import { useDispatch } from 'react-redux';
 import { SEESION } from '../../const';
+import { setLoginPop } from '../../redux/reducers/popup';
+
 const Category = () => {
   const history = useHistory();
   const [isLoading, setLoading] = useState(false);
   const [isLogin, setLogin] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const ck: any = sessionStorage.getItem(SEESION);
@@ -22,16 +26,11 @@ const Category = () => {
   }, []);
 
   useEffect(() => {
-    const poplogin = document.getElementById('popup_login');
-    if (poplogin?.classList.contains('pop') && isLogin === true) {
-      poplogin.classList.remove('pop');
+    if (isLogin === true) {
+      dispatch(setLoginPop(false));
     }
-  }, [isLogin, history]);
-
-  useEffect(() => {
     if (isLogin === false) {
-      const poplogin = document.getElementById('popup_login');
-      poplogin?.classList.add('pop');
+      dispatch(setLoginPop(true));
     }
   }, [isLogin, history]);
 
@@ -52,6 +51,7 @@ const Category = () => {
       <div style={{ paddingTop: '0.9333rem', marginBottom: '0.9333rem' }}>
         <h1 className="categoryTitle inner">Category</h1>
       </div>
+
       <div className="inner" style={{ marginBottom: '0.9333rem' }}>
         <div className="categoryNav">
           <NavLink to="/category/city">city</NavLink>
@@ -60,14 +60,18 @@ const Category = () => {
           <NavLink to="/category/nature">nature</NavLink>
         </div>
       </div>
-      <div>
-        <Switch>
-          <Route exact path="/category/city" component={City} />
-          <Route exact path="/category/space" component={Space} />
-          <Route exact path="/category/nature" component={Nature} />
-          <Route exact path="/category/remember" component={Remeber} />
-        </Switch>
-      </div>
+      {isLogin === true ? (
+        <div>
+          <Switch>
+            <Route exact path="/category/city" component={City} />
+            <Route exact path="/category/space" component={Space} />
+            <Route exact path="/category/nature" component={Nature} />
+            <Route exact path="/category/remember" component={Remeber} />
+          </Switch>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

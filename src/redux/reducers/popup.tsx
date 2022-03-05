@@ -2,21 +2,24 @@ const CH_LOGIN_POP = 'POPUP/CH_LOGIN_POP';
 const CH_PLAYER_POP = 'POPUP/CH_PLAYER_POP';
 const CH_NETWORK_ERROR_POP = 'POPUP/CH_NETWORK_ERROR_POP';
 
-export const setLoginPop = (userId: string) => ({
+export const setLoginPop = (loginPop: boolean) => ({
   type: CH_LOGIN_POP,
-  data: userId,
+  data: loginPop,
 });
-export const setPlayerPop = (login: boolean) => ({
+export const setPlayerPop = (playPop: boolean, isPlay: boolean) => ({
   type: CH_PLAYER_POP,
-  data: login,
+  data: { playPop, isPlay },
 });
-export const setNetworkErrorPop = (login: boolean) => ({
+export const setNetworkErrorPop = (netWorkPop: boolean) => ({
   type: CH_NETWORK_ERROR_POP,
-  data: login,
+  data: netWorkPop,
 });
+
 const initialState = {
-  userId: null,
-  login: false,
+  loginPop: false,
+  playPop: false,
+  isPlay: false,
+  netWorkPop: false,
 };
 
 const popupInfoReducer = (state = initialState, action: any) => {
@@ -24,17 +27,18 @@ const popupInfoReducer = (state = initialState, action: any) => {
     case CH_LOGIN_POP:
       return {
         ...state,
-        userId: action.data,
+        loginPop: action.data,
       };
     case CH_PLAYER_POP:
       return {
         ...state,
-        login: action.data,
+        playPop: action.data.playPop,
+        isPlay: action.data.isPlay,
       };
     case CH_NETWORK_ERROR_POP:
       return {
         ...state,
-        login: action.data,
+        netWorkPop: action.data,
       };
     default:
       return state;
