@@ -8,6 +8,7 @@ import MyPrivacy from './MyPrivacy';
 import MyContetent from './MyContnent';
 import MySingUp from './MySingUp';
 import Loading from '../../common/Loading';
+import MyEmailLogin from './MyEmailLogin';
 
 const My = () => {
   // const [isLoading, setLoading] = useState(true);
@@ -30,6 +31,7 @@ const My = () => {
     <div className="content">
       <Switch>
         <Route path="/my/myLogin" component={MyLogin} />
+        <Route path="/my/myEmailLogin" component={MyEmailLogin} />
         <Route path="/my/mySignup" component={MySingUp} />
         <Route path="/my/myFaq" component={MyFaq} />
         <Route path="/my/myNotice" component={MyNotice} />

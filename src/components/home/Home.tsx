@@ -9,6 +9,16 @@ import vod from '../../res/video/background_vod2.mp4';
 const Home = () => {
   const history = useHistory();
   const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (sessionStorage.getItem('data') === undefined) {
+      sessionStorage.setItem(
+        'data',
+        JSON.stringify({ audio: '', title: '', category: '', img: '' }),
+      );
+    }
+  }, [history]);
+
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {

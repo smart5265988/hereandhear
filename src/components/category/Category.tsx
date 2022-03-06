@@ -11,13 +11,11 @@ import { setLoginPop } from '../../redux/reducers/popup';
 
 const Category = () => {
   const history = useHistory();
-  const [isLoading, setLoading] = useState(false);
   const [isLogin, setLogin] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const ck: any = sessionStorage.getItem(SEESION);
-    console.log(JSON.parse(ck));
     if (ck !== null) {
       setLogin(true);
     } else {
@@ -37,15 +35,12 @@ const Category = () => {
   useEffect(() => {
     const data = history.location.pathname.split('/');
     const category = data[2];
-    console.log(category);
+    // console.log(category);
     if (category === undefined) {
       history.push('/category/city');
     }
   }, [history]);
 
-  if (isLoading === true) {
-    return <Loading />;
-  }
   return (
     <div className="sec_wrapper">
       <div style={{ paddingTop: '0.9333rem', marginBottom: '0.9333rem' }}>

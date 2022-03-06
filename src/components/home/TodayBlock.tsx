@@ -6,7 +6,8 @@ import { axiosGet } from '../../util/axiosGet';
 import Loading from '../../common/Loading';
 import { SEESION } from '../../const';
 import { setLoginPop } from '../../redux/reducers/popup';
-
+import { database } from '../../firebase';
+import { ref, onValue, get, child } from 'firebase/database';
 interface Recommend {
   audio: string;
   title: string;
@@ -31,29 +32,43 @@ const TodayBlock = () => {
     }
   }, []);
 
+  // useEffect(() => {
+  //   setLoading(true);
+  //   axiosGet('/recommend.json')
+  //     .then((list: any) => {
+  //       if (list.status === 200) {
+  //         setData(list.data);
+  //         setLoading(false);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       setData([]);
+  //       setLoading(false);
+  //     });
+  // }, []);
+
   useEffect(() => {
     setLoading(true);
-    axiosGet('/recommend.json')
-      .then((list: any) => {
-        if (list.status === 200) {
-          setData(list.data);
-          setLoading(false);
-        }
-      })
-      .catch((error) => {
+    const dbRef = ref(database);
+    get(child(dbRef, 'recommend')).then((snapshot) => {
+      if (snapshot.exists()) {
+        setData(snapshot.val());
+        setLoading(false);
+      } else {
         setData([]);
         setLoading(false);
-      });
+      }
+    });
   }, []);
 
-  const goPlayer = (category: string, id: string) => {
+  const goPlayer = (item: any) => {
     if (isLogin === false) {
       // console.log('today_block ck');
       // const poplogin = document.getElementById('popup_login');
       // poplogin?.classList.add('pop');
       dispatch(setLoginPop(true));
     } else {
-      history.push(`/player/${category}/${id}`);
+      history.push(`/player/${item.category}/${item.id}`);
     }
   };
 
@@ -80,7 +95,7 @@ const TodayBlock = () => {
                   background: `url(${item.img}) no-repeat`,
                   backgroundSize: 'cover',
                 }}
-                onClick={() => goPlayer(item.category.toLowerCase(), '1')}
+                onClick={() => goPlayer(item)}
                 key={`recommend${index}`}
               >
                 <div className="block_filter"></div>

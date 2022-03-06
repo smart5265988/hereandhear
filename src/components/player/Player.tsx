@@ -3,13 +3,15 @@ import { useHistory } from 'react-router-dom';
 import sample from '../../res/audio/japan.mp3';
 import Loading from '../../common/Loading';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPlayerPop } from '../../redux/reducers/popup';
-
+import { setPlayerPop, setContent } from '../../redux/reducers/popup';
+import { database } from '../../firebase';
+import { ref, onValue, get, child } from 'firebase/database';
 interface Media {
   audio: string;
   title: string;
   img: string;
   category: string;
+  text: string;
 }
 
 const Player = () => {
@@ -20,34 +22,34 @@ const Player = () => {
   const [isLoading, setLoading] = useState(false);
   const [isPlay, setPlay] = useState(false);
   const [data, setData] = useState({
-    audio: '',
     title: '',
     img: '',
     category: '',
+    audio: '',
+    text: '',
   });
 
+  // 받은 주소를 바탕으로 파이어베이스에서 필요한 데이터를 가져와야함.
   useEffect(() => {
+    setLoading(true);
     const data = history.location.pathname.split('/');
     const category = data[2];
     const id = data[3];
-    console.log(category, id);
     dispatch(setPlayerPop(false, false));
     if (category === undefined || id === undefined) {
-      // console.log('음원클릭해서 이동가능하게 변경')
       history.push('/category/city');
     }
-    // 받은 주소를 바탕으로 파이어베이스에서 필요한 데이터를 가져와야함.
-  }, [history]);
-
-  //세션에서 데이터 가져오기
-  useEffect(() => {
-    const data: any = sessionStorage.getItem('data');
-    const content = JSON.parse(data);
-    if (data === '' || data === undefined) {
-      alert('재생 오류');
-      history.goBack();
-    }
-    setData(content);
+    const dbRef = ref(database);
+    get(child(dbRef, `${category}/${id}`))
+      .then((snapshot) => {
+        const list = snapshot.val();
+        setData(list);
+        dispatch(setContent(list.audio, list.img, list.title, list.category));
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [history]);
 
   useEffect(() => {
@@ -59,18 +61,7 @@ const Player = () => {
     }
   }, [popInfo.isPlay]);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 500);
-  //   return () => {
-  //     clearTimeout();
-  //   };
-  // }, []);
-
   const play = () => {
-    // console.log(audio2);
     audio2?.play();
     dispatch(setPlayerPop(true, true));
   };
@@ -105,12 +96,12 @@ const Player = () => {
           <p>{data.title}</p>
           <span>{data.category}</span>
         </div>
-        <div className="play_content text inner">{data.category}</div>
+        <div className="play_content text inner">{data.text}</div>
 
         <div
           className="play_background"
           style={{
-            background: `url(${data.img}) no-repeat`,
+            backgroundImage: `url(${data.img})`,
             // backgroundPosition: 'center',
             // backgroundSize: 'cover',
           }}

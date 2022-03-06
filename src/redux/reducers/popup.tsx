@@ -1,6 +1,7 @@
 const CH_LOGIN_POP = 'POPUP/CH_LOGIN_POP';
 const CH_PLAYER_POP = 'POPUP/CH_PLAYER_POP';
 const CH_NETWORK_ERROR_POP = 'POPUP/CH_NETWORK_ERROR_POP';
+const CH_PLAYER_CONTENT = 'POPUP/CH_PLAYER_CONTENT';
 
 export const setLoginPop = (loginPop: boolean) => ({
   type: CH_LOGIN_POP,
@@ -15,11 +16,31 @@ export const setNetworkErrorPop = (netWorkPop: boolean) => ({
   data: netWorkPop,
 });
 
+export const setContent = (
+  audio: string,
+  img: string,
+  title: string,
+  category: string,
+) => ({
+  type: CH_PLAYER_CONTENT,
+  data: {
+    audio,
+    img,
+    title,
+    category,
+  },
+});
 const initialState = {
   loginPop: false,
   playPop: false,
   isPlay: false,
   netWorkPop: false,
+  content: {
+    audio: '',
+    img: '',
+    title: '',
+    category: '',
+  },
 };
 
 const popupInfoReducer = (state = initialState, action: any) => {
@@ -39,6 +60,16 @@ const popupInfoReducer = (state = initialState, action: any) => {
       return {
         ...state,
         netWorkPop: action.data,
+      };
+    case CH_PLAYER_CONTENT:
+      return {
+        ...state,
+        content: {
+          audio: action.data.audio,
+          img: action.data.img,
+          title: action.data.title,
+          category: action.data.category,
+        },
       };
     default:
       return state;

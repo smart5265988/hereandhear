@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import * as CONST from '../../const';
+import { SEESION, version } from '../../const';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
+
 const MyContent = () => {
   const history = useHistory();
+  const [isLogin, setLogin] = useState(false);
 
   const goPage = (page: string) => {
     if (page === 'login') {
@@ -17,6 +21,23 @@ const MyContent = () => {
       history.push('/my/myPrivacy');
     }
   };
+
+  const logout = async () => {
+    setLogin(false);
+    await signOut(auth);
+    history.push('/home');
+  };
+
+  useEffect(() => {
+    const ck: any = sessionStorage.getItem(SEESION);
+    // console.log(JSON.parse(ck));
+    if (ck !== null) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  }, []);
+
   return (
     <div className="content my">
       <div style={{ paddingTop: '0.9333rem', marginBottom: '0.9333rem' }}>
@@ -24,15 +45,23 @@ const MyContent = () => {
       </div>
       <div className="sec_wrapper">
         <div className="inner">
-          <div
-            className="login inner"
-            onClick={() => {
-              goPage('login');
-            }}
-          >
-            <span>로그인</span>
-            <span></span>
-          </div>
+          {isLogin === false ? (
+            <div
+              className="login inner"
+              onClick={() => {
+                goPage('login');
+              }}
+            >
+              <span>로그인</span>
+              <span></span>
+            </div>
+          ) : (
+            <div className="login out inner" onClick={logout}>
+              <span>로그아웃</span>
+              <span></span>
+            </div>
+          )}
+
           <div
             className="myblock inner"
             onClick={() => {
@@ -76,7 +105,7 @@ const MyContent = () => {
                 opacity: '0.6',
               }}
             >
-              {CONST.version}
+              {version}
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ const PlayList = () => {
 
   useEffect(() => {
     const ck: any = sessionStorage.getItem(SEESION);
-    console.log(JSON.parse(ck));
+    // console.log(JSON.parse(ck));
     if (ck !== null) {
       setLogin(true);
     } else {

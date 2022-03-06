@@ -13,8 +13,13 @@ const MyLogin = () => {
   const singup = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, id, password);
-      console.log(user);
+      setId('');
+      setPassword('');
+      alert('회원가입 완료');
+      history.push('my/myEmailLogin');
     } catch (error) {
+      setId('');
+      setPassword('');
       console.log(error);
     }
   };
@@ -31,11 +36,90 @@ const MyLogin = () => {
     history.goBack();
   };
 
+  //   <div>
+  //   <input type="text" onChange={handleId}></input>
+  //   <input type="text" onChange={handlePassword}></input>
+  //   <button onClick={singup}>가입</button>
+  // </div>
   return (
-    <div>
-      <input type="text" onChange={handleId}></input>
-      <input type="text" onChange={handlePassword}></input>
-      <button onClick={singup}>가입</button>
+    <div className="sec_wrapper">
+      <div className="goback2" onClick={goback}></div>
+      <div
+        style={{
+          paddingTop: '0.9333rem',
+        }}
+      >
+        <h1 className="categoryTitle inner">SignUp</h1>
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          width: '100%',
+          height: '40rem',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          alignItems: 'center',
+          zIndex: '60',
+        }}
+      >
+        <form
+          style={{
+            display: 'flex',
+            width: '100%',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center',
+            zIndex: '60',
+          }}
+        >
+          <input
+            type="text"
+            onChange={handleId}
+            placeholder="Email"
+            autoComplete="off"
+            style={{
+              width: '80%',
+              height: '4rem',
+              backgroundColor: 'transparent',
+              border: '1px solid #fff',
+              outline: 'none',
+              color: '#fff',
+              fontSize: '1.5rem',
+              marginBottom: '1rem',
+              paddingLeft: '2rem',
+            }}
+          ></input>
+          <input
+            type="password"
+            onChange={handlePassword}
+            placeholder="Password"
+            autoComplete="off"
+            style={{
+              width: '80%',
+              height: '4rem',
+              backgroundColor: 'transparent',
+              border: '1px solid #fff',
+              outline: 'none',
+              color: '#fff',
+              fontSize: '1.5rem',
+              marginBottom: '1rem',
+              paddingLeft: '2rem',
+            }}
+          ></input>
+        </form>
+        <button
+          style={{
+            width: '80%',
+            height: '4rem',
+            background: 'blue',
+            fontSize: '1.5rem',
+          }}
+          onClick={singup}
+        >
+          가입
+        </button>
+      </div>
     </div>
   );
 };

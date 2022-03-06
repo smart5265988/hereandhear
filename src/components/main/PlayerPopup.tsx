@@ -9,7 +9,7 @@ const PlayerPopup = () => {
   const dispatch = useDispatch();
   const popInfo = useSelector((state: any) => state.popupInfoReducer);
   const [isPlay, setPlay] = useState(true);
-
+  // console.log(popInfo);
   const goPlayer = (e: any) => {
     // e.stopPropagation();
     // const pop = document.getElementById('popup_player');
@@ -18,8 +18,8 @@ const PlayerPopup = () => {
     //   history.push('/player');
     // }
   };
-  const data: any = sessionStorage.getItem('data');
-  const content = JSON.parse(data);
+  // const data: any = sessionStorage.getItem('data');
+  // const content = JSON.parse(data);
 
   const audioRef = useRef<HTMLAudioElement>(null);
   let audio = audioRef.current;
@@ -77,25 +77,21 @@ const PlayerPopup = () => {
       <audio
         ref={audioRef}
         controlsList="nodownload"
-        // controls
-        src={content.audio}
+        src={popInfo.content.audio}
         id="audio2"
       ></audio>
 
       <div
         className="player_modal_img"
         style={{
-          background: `url(${content.img}) no-repeat`,
-          backgroundSize: 'cover',
+          backgroundImage: `url(${popInfo.content.img})`,
+          // backgroundSize: 'cover',
+          // backgroundPosition: 'center',
         }}
       ></div>
       <div className="player_modal_text">
-        <div>
-          {/* {content.title} */}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-          hic
-        </div>
-        <div>{content.category}</div>
+        <div>{popInfo.content.title}</div>
+        <div>{popInfo.content.category}</div>
       </div>
       <div className="player_modal_btn">
         {isPlay === false ? (

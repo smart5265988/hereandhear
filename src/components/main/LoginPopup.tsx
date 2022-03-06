@@ -20,11 +20,8 @@ const LoginPopup = () => {
   }, [popInfo.loginPop]);
 
   const goLogin = () => {
-    const pop = document.getElementById('popup_login');
-    if (pop) {
-      pop.style.display = 'none';
-      // document.body.style.overflow = 'unset';
-    }
+    dispatch(setLoginPop(false));
+
     history.push('/my/myLogin');
   };
 
@@ -36,20 +33,43 @@ const LoginPopup = () => {
     <div className="modal" id="popup_login">
       <div className="modal_inner">
         <div className="modal_content">
-          <div>
-            <p>
+          <div
+            style={{
+              marginBottom: '2rem',
+            }}
+          >
+            <p
+              style={{
+                textAlign: 'center',
+              }}
+            >
               로그인 후 이용할 수 있습니다.
               <br />
               지금 로그인 하시겠습니까?
             </p>
           </div>
 
-          <div onClick={goLogin}>
+          <button
+            style={{
+              width: '40%',
+              height: '2rem',
+              background: 'red',
+              marginBottom: '2rem',
+            }}
+            onClick={goLogin}
+          >
             <span>예</span>
-          </div>
-          <div onClick={closePop}>
+          </button>
+          <button
+            style={{
+              width: '40%',
+              height: '2rem',
+              background: 'red',
+            }}
+            onClick={closePop}
+          >
             <span>아니오</span>
-          </div>
+          </button>
         </div>
       </div>
     </div>

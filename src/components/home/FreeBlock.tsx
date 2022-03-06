@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom';
 // import img from '../../res/images/sapporo.jpg';
 import { axiosGet } from '../../util/axiosGet';
 import Loading from '../../common/Loading';
-
+import { database } from '../../firebase';
+import { ref, onValue, get, child } from 'firebase/database';
 interface Free {
   audio: string;
   title: string;
@@ -16,25 +17,38 @@ const FreeBlock = () => {
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setLoading] = useState(false);
 
+  // useEffect(() => {
+  //   setLoading(true);
+  //   axiosGet('/free.json')
+  //     .then((list: any) => {
+  //       if (list.status === 200) {
+  //         setData(list.data);
+  //         setLoading(false);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       setData([]);
+  //       setLoading(false);
+  //     });
+  // }, []);
+
   useEffect(() => {
     setLoading(true);
-    axiosGet('/free.json')
-      .then((list: any) => {
-        if (list.status === 200) {
-          setData(list.data);
-          setLoading(false);
-        }
-      })
-      .catch((error) => {
-        setData([]);
-        setLoading(false);
-      });
+    const dbRef = ref(database);
+    get(child(dbRef, 'free')).then((snapshot) => {
+      const list = snapshot.val();
+      const contentList = [];
+      for (let id in list) {
+        contentList.push({ id, ...list[id] });
+      }
+      // console.log(contentList);
+      setData(contentList);
+      setLoading(false);
+    });
   }, []);
 
   const goPlayer = (item: any) => {
-    // console.log(item);
-    sessionStorage.setItem('data', JSON.stringify(item));
-    history.push(`/player/${item.category}/free`);
+    history.push(`/player/${item.category}/${item.id}`);
   };
 
   if (isLoading === true) {
