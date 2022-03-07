@@ -9,7 +9,6 @@ const NetworkErrorPopup = () => {
   const dispatch = useDispatch();
   const popInfo = useSelector((state: any) => state.popupInfoReducer);
   useEffect(() => {
-    console.log(popInfo.netWorkPop, ':::');
     if (popInfo.netWorkPop === true) {
       popError?.classList.add('pop');
     }

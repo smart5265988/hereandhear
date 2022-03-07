@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { database } from '../../firebase';
-import { ref, onValue, get, child } from 'firebase/database';
+import { ref, get, child } from 'firebase/database';
 import Loading from '../../common/Loading';
 import { useDispatch } from 'react-redux';
 import { setNetworkErrorPop } from '../../redux/reducers/popup';

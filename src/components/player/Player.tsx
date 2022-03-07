@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import sample from '../../res/audio/japan.mp3';
 import Loading from '../../common/Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPlayerPop, setContent } from '../../redux/reducers/popup';
 import { database } from '../../firebase';
-import { ref, onValue, get, child } from 'firebase/database';
+import { ref, get, set, child } from 'firebase/database';
+import { SEESION } from '../../const';
 interface Media {
+  id: string;
   audio: string;
   title: string;
   img: string;
@@ -21,6 +22,7 @@ const Player = () => {
   const popInfo = useSelector((state: any) => state.popupInfoReducer);
   const [isLoading, setLoading] = useState(false);
   const [isPlay, setPlay] = useState(false);
+  const [userInfo, setUserInfo] = useState('');
   const [data, setData] = useState({
     title: '',
     img: '',
@@ -28,6 +30,26 @@ const Player = () => {
     audio: '',
     text: '',
   });
+  const [isLogin, setLogin] = useState(false);
+  // useEffect(() => {
+  //   const info: any = JSONsessionStorage.getItem(SEESION);
+  //   if (info) {
+  //     const infoParse = JSON.parse(info);
+  //     console.log(infoParse.uid);
+  //     setUserInfo(infoParse.uid);
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    const ck: any = sessionStorage.getItem(SEESION);
+    const infoParse = JSON.parse(ck);
+    if (ck !== null) {
+      setLogin(true);
+      setUserInfo(infoParse.uid);
+    } else {
+      setLogin(false);
+    }
+  }, []);
 
   // 받은 주소를 바탕으로 파이어베이스에서 필요한 데이터를 가져와야함.
   useEffect(() => {
@@ -44,7 +66,9 @@ const Player = () => {
       .then((snapshot) => {
         const list = snapshot.val();
         setData(list);
-        dispatch(setContent(list.audio, list.img, list.title, list.category));
+        dispatch(
+          setContent(id, list.audio, list.img, list.title, list.category),
+        );
         setLoading(false);
       })
       .catch((error) => {
@@ -72,7 +96,13 @@ const Player = () => {
   };
 
   const addList = () => {
-    console.log('addList');
+    // console.log('addList');
+    // console.log(data);
+    console.log(userInfo);
+    const dbRef = ref(database, `/users/${userInfo}/${popInfo.content.id}`);
+    set(dbRef, popInfo.content).then(() => {
+      alert('즐겨찾기에 추가 되었습니다.');
+    });
   };
   const goback = () => {
     history.goBack();
@@ -135,18 +165,22 @@ const Player = () => {
               </svg>
             </div>
           )}
-          <div onClick={() => addList()}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              id="Outline"
-              viewBox="0 0 24 24"
-              width="30"
-              height="30"
-              fill="#fff"
-            >
-              <path d="M20.137,24a2.8,2.8,0,0,1-1.987-.835L12,17.051,5.85,23.169a2.8,2.8,0,0,1-3.095.609A2.8,2.8,0,0,1,1,21.154V5A5,5,0,0,1,6,0H18a5,5,0,0,1,5,5V21.154a2.8,2.8,0,0,1-1.751,2.624A2.867,2.867,0,0,1,20.137,24ZM6,2A3,3,0,0,0,3,5V21.154a.843.843,0,0,0,1.437.6h0L11.3,14.933a1,1,0,0,1,1.41,0l6.855,6.819a.843.843,0,0,0,1.437-.6V5a3,3,0,0,0-3-3Z" />
-            </svg>
-          </div>
+          {isLogin === false ? (
+            <></>
+          ) : (
+            <div onClick={() => addList()}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                id="Outline"
+                viewBox="0 0 24 24"
+                width="30"
+                height="30"
+                fill="#fff"
+              >
+                <path d="M20.137,24a2.8,2.8,0,0,1-1.987-.835L12,17.051,5.85,23.169a2.8,2.8,0,0,1-3.095.609A2.8,2.8,0,0,1,1,21.154V5A5,5,0,0,1,6,0H18a5,5,0,0,1,5,5V21.154a2.8,2.8,0,0,1-1.751,2.624A2.867,2.867,0,0,1,20.137,24ZM6,2A3,3,0,0,0,3,5V21.154a.843.843,0,0,0,1.437.6h0L11.3,14.933a1,1,0,0,1,1.41,0l6.855,6.819a.843.843,0,0,0,1.437-.6V5a3,3,0,0,0-3-3Z" />
+              </svg>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -27,6 +27,7 @@ export const setSignUpErrorPop = (SignUpError: boolean) => ({
 });
 
 export const setContent = (
+  id: string,
   audio: string,
   img: string,
   title: string,
@@ -34,6 +35,7 @@ export const setContent = (
 ) => ({
   type: CH_PLAYER_CONTENT,
   data: {
+    id,
     audio,
     img,
     title,
@@ -48,6 +50,7 @@ const initialState = {
   LoginError: false,
   SignUpError: false,
   content: {
+    id: '',
     audio: '',
     img: '',
     title: '',
@@ -87,6 +90,7 @@ const popupInfoReducer = (state = initialState, action: any) => {
       return {
         ...state,
         content: {
+          id: action.data.id,
           audio: action.data.audio,
           img: action.data.img,
           title: action.data.title,

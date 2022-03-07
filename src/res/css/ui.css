@@ -777,8 +777,7 @@ html::-webkit-scrollbar {
 }
 
 .play_content.title {
-  height: 7rem;
-  /* border: 1px solid yellow; */
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;

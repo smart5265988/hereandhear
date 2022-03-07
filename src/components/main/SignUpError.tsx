@@ -7,7 +7,6 @@ const SignUpError = () => {
   const dispatch = useDispatch();
   const popInfo = useSelector((state: any) => state.popupInfoReducer);
   useEffect(() => {
-    console.log(popInfo.SignUpError, ':::');
     if (popInfo.SignUpError === true) {
       popError?.classList.add('pop');
     }
