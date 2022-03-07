@@ -115,6 +115,7 @@ const PlayList = () => {
                 key={`city${item.id}`}
               >
                 <div
+                  className="playlist_img"
                   style={{
                     background: `url(${item.img}) no-repeat`,
                     backgroundPosition: 'center',
@@ -122,11 +123,7 @@ const PlayList = () => {
                   }}
                 >
                   <button
-                    style={{
-                      width: '3rem',
-                      height: '3rem',
-                      background: 'red',
-                    }}
+                    className="del_btn"
                     onClick={(e) => delContent(e, item.id)}
                   >
                     X

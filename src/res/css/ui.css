@@ -435,6 +435,22 @@ html::-webkit-scrollbar {
   font-size: 4rem;
 }
 
+/* playlist */
+.playlist_img {
+  position: relative;
+}
+.del_btn {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  border-radius: 50%;
+  right: 1rem;
+  top: 1rem;
+  background-color: red;
+  text-align: center;
+  line-height: 2rem;
+}
+
 /* my */
 .my .content {
   width: 100%;
