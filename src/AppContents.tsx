@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, useState, useCallback } from 'react';
+import React, { Suspense } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
 import Loading from './common/Loading';
@@ -8,11 +8,7 @@ const My = React.lazy(() => import('./components/my/My'));
 const PlayList = React.lazy(() => import('./components/playlist/PlayList'));
 const Category = React.lazy(() => import('./components/category/Category'));
 const Footer = React.lazy(() => import('./components/footer/Footer'));
-const DeeplinkPopup = React.lazy(
-  () => import('./components/main/DeeplinkPopup'),
-);
 const LoginPopUp = React.lazy(() => import('./components/main/LoginPopup'));
-
 const NetworkErrorPopup = React.lazy(
   () => import('./components/main/NetworkErrorPopup'),
 );
@@ -20,6 +16,7 @@ const PlayerPopup = React.lazy(() => import('./components/main/PlayerPopup'));
 const Player = React.lazy(() => import('./components/player/Player'));
 const LoginError = React.lazy(() => import('./components/main/LoginError'));
 const SignUpError = React.lazy(() => import('./components/main/SignUpError'));
+const AddPopup = React.lazy(() => import('./components/main/AddPopup'));
 
 function AppContents() {
   return (
@@ -41,12 +38,12 @@ function AppContents() {
           <div id="footer">
             <Route component={Footer} />
           </div>
-          {/* <Route component={Intro} /> */}
           <Route component={LoginError} />
           <Route component={LoginPopUp} />
           <Route component={NetworkErrorPopup} />
           <Route component={SignUpError} />
           <Route component={PlayerPopup} />
+          <Route component={AddPopup} />
         </ErrorBoundary>
       </Suspense>
     </div>

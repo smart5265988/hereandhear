@@ -784,6 +784,9 @@ html::-webkit-scrollbar {
 #popup_signup_error.pop {
   display: block;
 }
+#popup_add.pop {
+  display: block;
+}
 /* play */
 
 .play_content {

@@ -6,7 +6,7 @@ import { database } from '../../firebase';
 import { ref, get, child, remove } from 'firebase/database';
 import { setNetworkErrorPop } from '../../redux/reducers/popup';
 import { useDispatch } from 'react-redux';
-import { setLoginPop } from '../../redux/reducers/popup';
+import { setLoginPop, setAddPop } from '../../redux/reducers/popup';
 
 interface List {
   category: string;
@@ -88,6 +88,7 @@ const PlayList = () => {
     const ck: any = sessionStorage.getItem(SEESION);
     const infoParse = JSON.parse(ck);
     remove(child(dbRef, `users/${infoParse.uid}/${id}`)).then(() => {
+      dispatch(setAddPop(true, '즐겨찾기에서 삭제되었습니다.'));
       getData();
     });
   };

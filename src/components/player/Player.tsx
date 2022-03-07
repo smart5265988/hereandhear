@@ -2,7 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Loading from '../../common/Loading';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPlayerPop, setContent } from '../../redux/reducers/popup';
+import {
+  setPlayerPop,
+  setContent,
+  setAddPop,
+} from '../../redux/reducers/popup';
 import { database } from '../../firebase';
 import { ref, get, set, child } from 'firebase/database';
 import { SEESION } from '../../const';
@@ -98,10 +102,11 @@ const Player = () => {
   const addList = () => {
     // console.log('addList');
     // console.log(data);
+
     console.log(userInfo);
     const dbRef = ref(database, `/users/${userInfo}/${popInfo.content.id}`);
     set(dbRef, popInfo.content).then(() => {
-      alert('즐겨찾기에 추가 되었습니다.');
+      dispatch(setAddPop(true, '즐겨찾기에 추가 되었습니다.'));
     });
   };
   const goback = () => {
