@@ -16,7 +16,6 @@ const MyContent = () => {
   };
 
   const logout = async () => {
-    setLogin(false);
     await signOut(auth);
     dispatch(setPlayerPop(false, false));
     window.location.href = 'http://localhost:3000/home';
