@@ -9,10 +9,13 @@ import {
 } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { SEESION } from '../../const';
+import { setLoginErrorPop } from '../../redux/reducers/popup';
+import { useDispatch } from 'react-redux';
 
 const MyLogin = () => {
   const history = useHistory();
   const [user, setUser] = useState({}); // 코드 추가
+  const dispatch = useDispatch();
 
   //로그인 확인용
   useEffect(() => {
@@ -21,6 +24,7 @@ const MyLogin = () => {
     if (ck !== null) {
       history.push('/home');
     }
+    return () => {};
   }, [user, history]);
 
   //로그인 상태 확인 (파이어베이스)
@@ -41,7 +45,7 @@ const MyLogin = () => {
         GoogleAuthProvider.credentialFromResult(result);
       })
       .catch((error) => {
-        console.log(error);
+        dispatch(setLoginErrorPop(true));
       });
   };
 
@@ -67,49 +71,17 @@ const MyLogin = () => {
       >
         <h1 className="categoryTitle inner">Login</h1>
       </div>
-      <div
-        style={{
-          display: 'flex',
-          width: '100%',
-          height: '40rem',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          alignItems: 'center',
-          zIndex: '60',
-        }}
-      >
+      <div className="my_login">
+        <button className="google" onClick={googleLogin}></button>
         <button
           style={{
-            width: '80%',
-            height: '6rem',
-            background: 'blue',
-            marginBottom: '3rem',
-          }}
-          onClick={googleLogin}
-        >
-          구글로 계속하기
-        </button>
-        <button
-          style={{
-            width: '80%',
-            height: '6rem',
-            background: 'red',
-            marginBottom: '3rem',
+            border: '1px solid #26aae1',
           }}
           onClick={goEmailLogin}
         >
           이메일로 계속하기
         </button>
-        <button
-          style={{
-            width: '80%',
-            height: '6rem',
-            background: 'red',
-          }}
-          onClick={goSingUp}
-        >
-          회원가입
-        </button>
+        <button onClick={goSingUp}>회원가입</button>
       </div>
     </div>
   );

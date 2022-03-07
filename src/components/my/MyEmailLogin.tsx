@@ -8,9 +8,11 @@ import {
 } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { SEESION } from '../../const';
-
+import { setLoginErrorPop } from '../../redux/reducers/popup';
+import { useDispatch } from 'react-redux';
 const MyEmailLogin = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState({}); // 코드 추가
@@ -36,7 +38,7 @@ const MyEmailLogin = () => {
         return signInWithEmailAndPassword(auth, id, password);
       })
       .catch((error) => {
-        alert('로그인 오류');
+        dispatch(setLoginErrorPop(true));
       });
   };
 
@@ -55,46 +57,14 @@ const MyEmailLogin = () => {
         <h1 className="categoryTitle inner">Email Login</h1>
       </div>
 
-      <div
-        style={{
-          display: 'flex',
-          width: '100%',
-          height: '40rem',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          alignItems: 'center',
-          zIndex: '60',
-        }}
-      >
-        <form
-          style={{
-            display: 'flex',
-            width: '100%',
-            height: 'auto',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            alignItems: 'center',
-            zIndex: '60',
-          }}
-          onSubmit={(e) => e.preventDefault()}
-        >
+      <div className="my_email_login">
+        <form onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
             placeholder="Email"
             autoComplete="off"
             onChange={(e) => {
               setId(e.target.value);
-            }}
-            style={{
-              width: '80%',
-              height: '4rem',
-              backgroundColor: 'transparent',
-              border: '1px solid #fff',
-              outline: 'none',
-              color: '#fff',
-              fontSize: '1.5rem',
-              marginBottom: '1rem',
-              paddingLeft: '2rem',
             }}
           />
           <input
@@ -104,30 +74,9 @@ const MyEmailLogin = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            style={{
-              width: '80%',
-              height: '4rem',
-              backgroundColor: 'transparent',
-              border: '1px solid #fff',
-              outline: 'none',
-              color: '#fff',
-              fontSize: '1.5rem',
-              marginBottom: '1rem',
-              paddingLeft: '2rem',
-            }}
           />
         </form>
-        <button
-          style={{
-            width: '80%',
-            height: '4rem',
-            background: 'blue',
-            fontSize: '1.5rem',
-          }}
-          onClick={login}
-        >
-          Login
-        </button>
+        <button onClick={login}>Login</button>
       </div>
     </div>
   );

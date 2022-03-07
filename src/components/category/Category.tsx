@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Switch, useHistory, NavLink } from 'react-router-dom';
 import City from './City';
 import Remeber from './Remember';
 import Space from './Space';
 import Nature from './Nature';
-import Loading from '../../common/Loading';
 import { useDispatch } from 'react-redux';
 import { SEESION } from '../../const';
 import { setLoginPop } from '../../redux/reducers/popup';
@@ -35,7 +34,6 @@ const Category = () => {
   useEffect(() => {
     const data = history.location.pathname.split('/');
     const category = data[2];
-    // console.log(category);
     if (category === undefined) {
       history.push('/category/city');
     }

@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { database } from '../../firebase';
 import { ref, onValue, get, child } from 'firebase/database';
 import Loading from '../../common/Loading';
+import { useDispatch } from 'react-redux';
+import { setNetworkErrorPop } from '../../redux/reducers/popup';
 interface City {
   category: string;
   id: string;
@@ -12,6 +14,7 @@ interface City {
 
 const City = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setLoading] = useState(false);
 
@@ -22,15 +25,19 @@ const City = () => {
   useEffect(() => {
     setLoading(true);
     const dbRef = ref(database);
-    get(child(dbRef, 'city')).then((snapshot) => {
-      const list = snapshot.val();
-      const contentList = [];
-      for (let id in list) {
-        contentList.push({ id, ...list[id] });
-      }
-      setData(contentList);
-      setLoading(false);
-    });
+    get(child(dbRef, 'city'))
+      .then((snapshot) => {
+        const list = snapshot.val();
+        const contentList = [];
+        for (let id in list) {
+          contentList.push({ id, ...list[id] });
+        }
+        setData(contentList);
+        setLoading(false);
+      })
+      .catch((error) => {
+        dispatch(setNetworkErrorPop(true));
+      });
   }, []);
 
   if (isLoading === true) {

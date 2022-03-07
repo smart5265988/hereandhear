@@ -16,10 +16,10 @@ const LoginPopUp = React.lazy(() => import('./components/main/LoginPopup'));
 const NetworkErrorPopup = React.lazy(
   () => import('./components/main/NetworkErrorPopup'),
 );
-
 const PlayerPopup = React.lazy(() => import('./components/main/PlayerPopup'));
-const Intro = React.lazy(() => import('./components/Intro'));
 const Player = React.lazy(() => import('./components/player/Player'));
+const LoginError = React.lazy(() => import('./components/main/LoginError'));
+const SignUpError = React.lazy(() => import('./components/main/SignUpError'));
 
 function AppContents() {
   return (
@@ -42,9 +42,10 @@ function AppContents() {
             <Route component={Footer} />
           </div>
           {/* <Route component={Intro} /> */}
-          {/* <Route component={DeeplinkPopup} /> */}
+          <Route component={LoginError} />
           <Route component={LoginPopUp} />
-          {/* <Route component={NetworkErrorPopup} /> */}
+          <Route component={NetworkErrorPopup} />
+          <Route component={SignUpError} />
           <Route component={PlayerPopup} />
         </ErrorBoundary>
       </Suspense>

@@ -38,36 +38,17 @@ const LoginPopup = () => {
               marginBottom: '2rem',
             }}
           >
-            <p
-              style={{
-                textAlign: 'center',
-              }}
-            >
+            <p>
               로그인 후 이용할 수 있습니다.
               <br />
               지금 로그인 하시겠습니까?
             </p>
           </div>
 
-          <button
-            style={{
-              width: '40%',
-              height: '2rem',
-              background: 'red',
-              marginBottom: '2rem',
-            }}
-            onClick={goLogin}
-          >
+          <button onClick={goLogin}>
             <span>예</span>
           </button>
-          <button
-            style={{
-              width: '40%',
-              height: '2rem',
-              background: 'red',
-            }}
-            onClick={closePop}
-          >
+          <button onClick={closePop}>
             <span>아니오</span>
           </button>
         </div>

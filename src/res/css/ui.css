@@ -2,7 +2,7 @@
 @import url('reset.css');
 
 html {
-  /* background-color: #000; */
+  background-color: #000;
   color: #fff;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -25,15 +25,11 @@ html::-webkit-scrollbar {
   background-color: #000;
   padding-bottom: 5rem;
 }
-/* #wrap.sub {
-  background-color: #999;
-} */
+
 #container {
   position: relative;
   width: 100%;
   margin-bottom: 0.9333rem;
-  /* background: url('../images/sapporo.jpg') no-repeat;
-  background-size: 50.8rem; */
 }
 
 /* Common */
@@ -103,22 +99,7 @@ html::-webkit-scrollbar {
   background-position: center;
   color: #fff;
 }
-/* .content .top_image {
-  background: url('../images/sapporo.jpg') no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 500px;
-  max-width: 50.8rem;
-  position: fixed;
-} */
 
-/* HomeBlock */
-/* .today .content {
-  border: 1px solid red;
-  border-top: 0 none;
-  padding: 1.5333rem;
-  background-color: #000;
-} */
 .ani_logo {
   background: url('../images/icon/logo1.png') no-repeat;
   background-size: cover;
@@ -170,20 +151,12 @@ html::-webkit-scrollbar {
   overflow-x: auto;
   transform: translateZ(0);
 }
-/* .today.content .home_scroll {
-  padding-bottom: 1.5333rem;
-  margin: 1.5333rem -1.5333rem 0;
-  overflow-y: hidden;
-  overflow-x: auto;
-  transform: translateZ(0);
-  font-size: 0;
-} */
+
 .home_scroll::-webkit-scrollbar {
   display: none;
 }
 .home_scroll ul {
   padding: 0 1.5333rem;
-  /* overflow: visible; */
   overflow: hidden;
   white-space: nowrap;
   display: inline-block;
@@ -221,15 +194,16 @@ html::-webkit-scrollbar {
   z-index: 40;
   font-weight: 500;
 }
+
 /* banner */
 .banner {
   background-color: #26aae1;
   height: 8rem;
-  /* border-radius: 0.9333rem; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .banner.img {
   font-size: 1.5rem;
   color: #fff;
@@ -242,12 +216,14 @@ html::-webkit-scrollbar {
   justify-content: flex-end;
   padding-right: 5rem;
 }
+
 .banner.text {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
 }
+
 .bannerLogo {
   background-image: url('../images/icon/logo1-1.png');
   background-position: center;
@@ -256,10 +232,12 @@ html::-webkit-scrollbar {
   height: 3rem;
   margin-right: 1rem;
 }
+
 .banner.text p {
   font-size: 1.3rem;
   text-align: center;
 }
+
 .filter {
   width: 100%;
   position: absolute;
@@ -271,6 +249,7 @@ html::-webkit-scrollbar {
   );
   z-index: 30;
 }
+
 .block_filter {
   position: absolute;
   background: linear-gradient(
@@ -284,9 +263,7 @@ html::-webkit-scrollbar {
   left: 0;
   transition: 0.5s;
 }
-/* .block_filter:hover {
-  opacity: 0;
-} */
+
 .contents_lock {
   width: 3rem;
   height: 3rem;
@@ -326,8 +303,6 @@ html::-webkit-scrollbar {
 }
 
 .category ul li:nth-child(1) div {
-  /* border: 1px solid red; */
-  /* background-color: #26aae1; */
   cursor: pointer;
   width: 6rem;
   height: 6rem;
@@ -335,9 +310,7 @@ html::-webkit-scrollbar {
   background-position: center;
   transition: 0.4s;
 }
-/* .category ul li:nth-child(1) div:hover {
-  transform: scale(1.1);
-} */
+
 .category ul li:nth-child(1) div:nth-child(1) {
   background: url('../images/category-01-01.jpg') no-repeat;
   background-size: cover;
@@ -364,7 +337,6 @@ html::-webkit-scrollbar {
   height: 6rem;
   line-height: 6rem;
   font-weight: 600;
-  /* background-color: #26aae1; */
   display: flex;
   justify-content: center;
 }
@@ -374,7 +346,6 @@ html::-webkit-scrollbar {
 }
 
 /* category Page */
-
 .categoryNav {
   display: flex;
   flex-direction: row;
@@ -405,14 +376,13 @@ html::-webkit-scrollbar {
 .list {
   display: inline-block;
   width: 45%;
-  /* height: auto; */
-  /* border: 1px solid red; */
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .list div {
   width: 100%;
   border-radius: 0.7333rem;
@@ -421,6 +391,7 @@ html::-webkit-scrollbar {
   height: 20rem;
   box-shadow: 0 0.5rem 1.7rem 0 rgba(0, 0, 0, 0.09);
 }
+
 .categorylist_btn {
   width: 100%;
   max-width: 50.8rem;
@@ -431,6 +402,7 @@ html::-webkit-scrollbar {
   line-height: 5rem;
   border-radius: 0.7333rem;
 }
+
 .categorylist_title {
   margin-top: 0.5rem;
   width: 100%;
@@ -449,6 +421,7 @@ html::-webkit-scrollbar {
   line-height: 2rem;
   padding-left: 0.3rem;
 }
+
 /* player */
 .plyer .content {
   width: 100%;
@@ -476,17 +449,105 @@ html::-webkit-scrollbar {
 }
 
 .login {
-  height: 18rem;
-  border: 2px solid #26aae1;
+  height: 10rem;
+  border: 3px solid #26aae1;
   border-radius: 0.8rem;
   display: flex;
   align-items: center;
   cursor: pointer;
   font-size: 1.4rem;
+  background: url('../images/airport.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+.login_filter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  background: linear-gradient(
+    97deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
+.login span {
+  z-index: 50;
+}
 .login.out {
-  border: 2px solid red;
+  border: 3px solid red;
+  background: url('../images/bye.jpg') no-repeat;
+  background-size: 100%;
+  background-position: center;
+  overflow: hidden;
+  color: #fff;
+}
+
+.my_login {
+  display: flex;
+  width: 100%;
+  height: 40rem;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  z-index: 60;
+}
+
+.my_login button {
+  width: 80%;
+  height: 5rem;
+  margin-bottom: 3rem;
+  border: 1px solid #fff;
+  border-radius: 3rem;
+  font-size: 1.5rem;
+}
+.google {
+  background: url('../images/btn_google_signin_light_normal_web@2x.png')
+    no-repeat;
+  background-position: center;
+  background-size: 105%;
+}
+
+.my_email_login {
+  display: flex;
+  width: 100%;
+  height: 40rem;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  z-index: 60;
+}
+.my_email_login form {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  z-index: 60;
+}
+.my_email_login input {
+  width: 80%;
+  height: 4rem;
+  background-color: transparent;
+  border: 1px solid #fff;
+  outline: none;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+.my_email_login input:focus {
+  border: 1px solid red;
+}
+.my_email_login button {
+  width: 80%;
+  height: 4rem;
+  border: 1px solid #26aae1;
+  border-radius: 3rem;
+  font-size: 1.5rem;
 }
 
 .myblock {
@@ -510,11 +571,6 @@ html::-webkit-scrollbar {
   background-position: center;
 }
 
-/* .myblock:hover {
-  border: 2px solid #fff;
-  background-color: #fff;
-  color: #000;
-} */
 .notice_list {
   width: 100%;
   height: auto;
@@ -589,6 +645,7 @@ html::-webkit-scrollbar {
 .my_privacy p {
   margin-bottom: 3rem;
 }
+
 /* footer */
 #footer {
   position: fixed;
@@ -609,16 +666,6 @@ html::-webkit-scrollbar {
   border-radius: 0.7333rem 0.7333rem 0 0;
   padding: 0 2.5333rem;
 }
-
-/* .tab_container div {
-  height: 5rem;
-  background-color: #fff;
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-} */
 
 .footerIcon {
   width: 3rem;
@@ -689,7 +736,36 @@ html::-webkit-scrollbar {
   transform: translate(-50%, -50%);
 }
 
+.modal_content > div {
+  width: 100%;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal_content p {
+  text-align: center;
+  font-size: 1.5rem;
+}
+.modal_content button {
+  width: 40%;
+  height: 3rem;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  border: 1px solid #fff;
+  border-radius: 1.5rem;
+}
+
 #popup_login.pop {
+  display: block;
+}
+#popup_network_error.pop {
+  display: block;
+}
+#popup_login_error.pop {
+  display: block;
+}
+#popup_signup_error.pop {
   display: block;
 }
 /* play */
@@ -721,9 +797,7 @@ html::-webkit-scrollbar {
   opacity: 0.6;
   transition: 0.5s;
 }
-/* .play_content.title span:hover {
-  opacity: 1;
-} */
+
 .play_content.text {
   height: 15rem;
   /* background-color: green; */
@@ -739,9 +813,6 @@ html::-webkit-scrollbar {
   transition: 0.5s;
   text-align: center;
 }
-/* .play_content.text:hover {
-  opacity: 1;
-} */
 
 .play_background {
   position: fixed;
@@ -774,9 +845,7 @@ html::-webkit-scrollbar {
   cursor: pointer;
   transition: 0.4s;
 }
-/* .button div:hover {
-  transform: scale(1.1);
-} */
+
 .button div:last-child {
   margin-right: 0;
 }
@@ -785,7 +854,6 @@ html::-webkit-scrollbar {
   width: 95%;
   max-width: 47.8rem;
   height: 7rem;
-  /* position: absolute; */
   position: fixed;
   background-color: #777777e6;
   z-index: 999;
@@ -834,8 +902,8 @@ html::-webkit-scrollbar {
   align-items: center;
   justify-content: space-evenly;
 }
-/* bookmark (playList) */
 
+/* bookmark (playList) */
 .nodata {
   display: flex;
   align-items: center;

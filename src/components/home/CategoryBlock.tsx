@@ -4,23 +4,12 @@ import { useHistory } from 'react-router-dom';
 const CategotyBlock = () => {
   const history = useHistory();
 
-  const detailList = (val: string) => {
-    if (val === 'city') {
-      history.push('/category/city');
-    } else if (val === 'space') {
-      history.push('/category/space');
-    } else if (val === 'nature') {
-      history.push('/category/nature');
-    } else if (val === 'remember') {
-      history.push('/category/remember');
-    }
+  const detailList = (category: string) => {
+    history.push(`/category/${category}`);
   };
 
   return (
-    <div
-      className="sec_wrapper"
-      // style={{ border: '1px solid red' }}
-    >
+    <div className="sec_wrapper">
       <div
         style={{
           textAlign: 'center',

@@ -1,30 +1,27 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { setNetworkErrorPop } from '../../redux/reducers/popup';
+import { setSignUpErrorPop } from '../../redux/reducers/popup';
 
-const NetworkErrorPopup = () => {
-  let popError = document.getElementById('popup_network_error');
-  const history = useHistory();
+const SignUpError = () => {
+  let popError = document.getElementById('popup_signup_error');
   const dispatch = useDispatch();
   const popInfo = useSelector((state: any) => state.popupInfoReducer);
   useEffect(() => {
-    console.log(popInfo.netWorkPop, ':::');
-    if (popInfo.netWorkPop === true) {
+    console.log(popInfo.SignUpError, ':::');
+    if (popInfo.SignUpError === true) {
       popError?.classList.add('pop');
     }
-    if (popInfo.netWorkPop === false) {
+    if (popInfo.SignUpError === false) {
       popError?.classList.remove('pop');
     }
-  }, [popInfo.netWorkPop]);
+  }, [popInfo.SignUpError]);
 
   const closePop = () => {
-    dispatch(setNetworkErrorPop(false));
-    history.push('/home');
+    dispatch(setSignUpErrorPop(false));
   };
 
   return (
-    <div className="modal" id="popup_network_error">
+    <div className="modal" id="popup_signup_error">
       <div className="modal_inner">
         <div className="modal_content">
           <div
@@ -33,9 +30,9 @@ const NetworkErrorPopup = () => {
             }}
           >
             <p>
-              일시적인 접속장애가 발생하였습니다.
+              아이디와 비밀번호를
               <br />
-              잠시 후 다시 실행해주세요.
+              다시 설정해주세요.
             </p>
           </div>
           <button onClick={closePop}>
@@ -47,4 +44,4 @@ const NetworkErrorPopup = () => {
   );
 };
 
-export default NetworkErrorPopup;
+export default SignUpError;

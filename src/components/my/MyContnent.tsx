@@ -9,17 +9,8 @@ const MyContent = () => {
   const [isLogin, setLogin] = useState(false);
 
   const goPage = (page: string) => {
-    if (page === 'login') {
-      history.push('/my/myLogin');
-    } else if (page === 'notice') {
-      history.push('/my/myNotice');
-    } else if (page === 'faq') {
-      history.push('/my/myFaq');
-    } else if (page === 'term') {
-      history.push('/my/myTerms');
-    } else if (page === 'privacy') {
-      history.push('/my/myPrivacy');
-    }
+    console.log(page);
+    history.push(`/my/${page}`);
   };
 
   const logout = async () => {
@@ -49,14 +40,16 @@ const MyContent = () => {
             <div
               className="login inner"
               onClick={() => {
-                goPage('login');
+                goPage('myLogin');
               }}
             >
+              <div className="login_filter"></div>
               <span>로그인</span>
               <span></span>
             </div>
           ) : (
             <div className="login out inner" onClick={logout}>
+              <div className="login_filter"></div>
               <span>로그아웃</span>
               <span></span>
             </div>
@@ -65,7 +58,7 @@ const MyContent = () => {
           <div
             className="myblock inner"
             onClick={() => {
-              goPage('notice');
+              goPage('myNotice');
             }}
           >
             <span>공지사항</span>
@@ -74,7 +67,7 @@ const MyContent = () => {
           <div
             className="myblock inner"
             onClick={() => {
-              goPage('faq');
+              goPage('myFaq');
             }}
           >
             <span>자주하는 질문</span>
@@ -83,7 +76,7 @@ const MyContent = () => {
           <div
             className="myblock inner"
             onClick={() => {
-              goPage('term');
+              goPage('myTerms');
             }}
           >
             <span>이용약관</span>
@@ -92,7 +85,7 @@ const MyContent = () => {
           <div
             className="myblock inner"
             onClick={() => {
-              goPage('privacy');
+              goPage('myPrivacy');
             }}
           >
             <span>개인정보 처리방침</span>
