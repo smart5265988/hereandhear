@@ -3,20 +3,23 @@ import { useHistory } from 'react-router-dom';
 import { SEESION, version } from '../../const';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { useDispatch } from 'react-redux';
+import { setPlayerPop } from '../../redux/reducers/popup';
 
 const MyContent = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [isLogin, setLogin] = useState(false);
 
   const goPage = (page: string) => {
-    console.log(page);
     history.push(`/my/${page}`);
   };
 
   const logout = async () => {
     setLogin(false);
     await signOut(auth);
-    history.push('/home');
+    dispatch(setPlayerPop(false, false));
+    window.location.href = 'http://localhost:3000/home';
   };
 
   useEffect(() => {

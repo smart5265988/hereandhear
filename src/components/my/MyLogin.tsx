@@ -12,10 +12,12 @@ import { SEESION } from '../../const';
 import { setLoginErrorPop } from '../../redux/reducers/popup';
 import { useDispatch } from 'react-redux';
 import { setLoginPop } from '../../redux/reducers/popup';
+import Loading from '../../common/Loading';
 
 const MyLogin = () => {
   const history = useHistory();
   const [user, setUser] = useState({}); // 코드 추가
+  const [isLoding, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   //로그인 확인용
@@ -35,7 +37,8 @@ const MyLogin = () => {
   }); // 코드 추가
 
   //구글로그인
-  const googleLogin = async () => {
+  const googleLogin = () => {
+    setLoading(true);
     const provider = new GoogleAuthProvider();
 
     setPersistence(auth, browserSessionPersistence)
@@ -43,9 +46,11 @@ const MyLogin = () => {
         return await signInWithPopup(auth, provider);
       })
       .then((result) => {
+        setLoading(false);
         GoogleAuthProvider.credentialFromResult(result);
       })
       .catch((error) => {
+        setLoading(false);
         dispatch(setLoginErrorPop(true));
       });
   };
@@ -60,6 +65,10 @@ const MyLogin = () => {
   const goSingUp = () => {
     history.push('/my/mySignup');
   };
+
+  if (isLoding === true) {
+    return <Loading />;
+  }
 
   return (
     <div className="sec_wrapper">
