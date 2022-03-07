@@ -6,6 +6,7 @@ import { database } from '../../firebase';
 import { ref, get, child, remove } from 'firebase/database';
 import { setNetworkErrorPop } from '../../redux/reducers/popup';
 import { useDispatch } from 'react-redux';
+import { setLoginPop } from '../../redux/reducers/popup';
 
 interface List {
   category: string;
@@ -42,22 +43,20 @@ const PlayList = () => {
 
   //로그인 팝업
   useEffect(() => {
-    if (isLogin === false) {
-      const poplogin = document.getElementById('popup_login');
-      poplogin?.classList.add('pop');
+    if (isLogin === true) {
+      dispatch(setLoginPop(false));
     }
-  }, [isLogin, history]);
-
-  useEffect(() => {
-    const poplogin = document.getElementById('popup_login');
-    if (poplogin?.classList.contains('pop') && isLogin === true) {
-      poplogin.classList.remove('pop');
+    if (isLogin === false) {
+      dispatch(setLoginPop(true));
     }
   }, [isLogin, history]);
 
   const getData = () => {
+    let infoParse = { uid: '' };
     const ck: any = sessionStorage.getItem(SEESION);
-    const infoParse = JSON.parse(ck);
+    if (ck) {
+      infoParse = JSON.parse(ck);
+    }
     setLoading(true);
     const dbRef = ref(database);
     get(child(dbRef, `users/${infoParse.uid}`))

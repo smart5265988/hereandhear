@@ -34,6 +34,11 @@ const MyLogin = () => {
     history.goBack();
   };
 
+  const onCheckEnter = (e: any) => {
+    if (e.key === 'Enter') {
+      singup();
+    }
+  };
   return (
     <div className="sec_wrapper">
       <div className="goback2" onClick={goback}></div>
@@ -46,7 +51,7 @@ const MyLogin = () => {
       </div>
 
       <div className="my_email_login">
-        <form>
+        <form onSubmit={(e) => e.preventDefault()} onKeyPress={onCheckEnter}>
           <input
             type="text"
             onChange={handleId}

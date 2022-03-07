@@ -11,6 +11,7 @@ import { auth } from '../../firebase';
 import { SEESION } from '../../const';
 import { setLoginErrorPop } from '../../redux/reducers/popup';
 import { useDispatch } from 'react-redux';
+import { setLoginPop } from '../../redux/reducers/popup';
 
 const MyLogin = () => {
   const history = useHistory();

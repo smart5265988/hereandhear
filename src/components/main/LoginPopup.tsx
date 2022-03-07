@@ -9,8 +9,6 @@ const LoginPopup = () => {
   const popInfo = useSelector((state: any) => state.popupInfoReducer);
 
   useEffect(() => {
-    // console.log(popInfo, ':::');
-
     if (popInfo.loginPop === true) {
       poplogin?.classList.add('pop');
     }
@@ -21,7 +19,6 @@ const LoginPopup = () => {
 
   const goLogin = () => {
     dispatch(setLoginPop(false));
-
     history.push('/my/myLogin');
   };
 
