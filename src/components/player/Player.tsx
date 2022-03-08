@@ -35,14 +35,7 @@ const Player = () => {
     text: '',
   });
   const [isLogin, setLogin] = useState(false);
-  // useEffect(() => {
-  //   const info: any = JSONsessionStorage.getItem(SEESION);
-  //   if (info) {
-  //     const infoParse = JSON.parse(info);
-  //     console.log(infoParse.uid);
-  //     setUserInfo(infoParse.uid);
-  //   }
-  // }, []);
+  const [isAdd, setAdd] = useState(true);
 
   useEffect(() => {
     const ck: any = sessionStorage.getItem(SEESION);
@@ -54,6 +47,22 @@ const Player = () => {
       setLogin(false);
     }
   }, []);
+
+  //추가버튼 노출여부 ( 파이어베이스에 저장된 리스트에 값이 있을경우 상태변경)
+  useEffect(() => {
+    if (userInfo !== '') {
+      const data = history.location.pathname.split('/');
+      const id = data[3];
+      const dbRef = ref(database);
+      get(child(dbRef, `users/${userInfo}/${id}`)).then((snapshot) => {
+        const list = snapshot.val();
+        console.log(list);
+        if (list !== null) {
+          setAdd(false);
+        }
+      });
+    }
+  }, [userInfo, popInfo.AddPop]);
 
   // 받은 주소를 바탕으로 파이어베이스에서 필요한 데이터를 가져와야함.
   useEffect(() => {
@@ -80,6 +89,7 @@ const Player = () => {
       });
   }, [history]);
 
+  //플레이팝업 리덕스 상태에 따라 플레이 페이지 버튼 컨트롤
   useEffect(() => {
     if (popInfo.isPlay === true) {
       setPlay(true);
@@ -99,16 +109,14 @@ const Player = () => {
     dispatch(setPlayerPop(true, false));
   };
 
+  //파이어베이스 회원 폴더에 추가
   const addList = () => {
-    // console.log('addList');
-    // console.log(data);
-
-    console.log(userInfo);
     const dbRef = ref(database, `/users/${userInfo}/${popInfo.content.id}`);
     set(dbRef, popInfo.content).then(() => {
       dispatch(setAddPop(true, '즐겨찾기에 추가 되었습니다.'));
     });
   };
+
   const goback = () => {
     history.goBack();
   };
@@ -137,8 +145,6 @@ const Player = () => {
           className="play_background"
           style={{
             backgroundImage: `url(${data.img})`,
-            // backgroundPosition: 'center',
-            // backgroundSize: 'cover',
           }}
         ></div>
         <div className="button">
@@ -170,7 +176,7 @@ const Player = () => {
               </svg>
             </div>
           )}
-          {isLogin === false ? (
+          {isLogin === false || isAdd === false ? (
             <></>
           ) : (
             <div onClick={() => addList()}>
