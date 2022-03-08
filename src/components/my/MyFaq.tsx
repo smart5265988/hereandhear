@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import * as firebase from '../../const/index';
 import { axiosGet } from '../../util/axiosGet';
 import Loading from '../../common/Loading';
 
@@ -15,6 +14,7 @@ const MyFaq = () => {
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setLoading] = useState(false);
 
+  //파이어베이스 저장 데이터를 json 파일로 요청해서 데이터랜더링
   useEffect(() => {
     setLoading(true);
     axiosGet('/faq.json')

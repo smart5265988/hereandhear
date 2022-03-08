@@ -21,9 +21,9 @@ const MyContent = () => {
     window.location.href = 'https://herehear.co.kr/home';
   };
 
+  //세션에 저장된 값으로 로그인 여부 판단
   useEffect(() => {
     const ck: any = sessionStorage.getItem(SEESION);
-    // console.log(JSON.parse(ck));
     if (ck !== null) {
       setLogin(true);
     } else {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Route, Switch, useHistory, NavLink } from 'react-router-dom';
 import City from './City';
-import Remeber from './Remember';
+import Remember from './Remember';
 import Space from './Space';
 import Nature from './Nature';
 import { useDispatch } from 'react-redux';
@@ -13,6 +13,7 @@ const Category = () => {
   const [isLogin, setLogin] = useState(false);
   const dispatch = useDispatch();
 
+  //세션에 저장된 값으로 로그인 여부판단
   useEffect(() => {
     const ck: any = sessionStorage.getItem(SEESION);
     if (ck !== null) {
@@ -22,6 +23,7 @@ const Category = () => {
     }
   }, []);
 
+  //로그인 여부에따라 로그인팝업창 노출여부
   useEffect(() => {
     if (isLogin === true) {
       dispatch(setLoginPop(false));
@@ -31,6 +33,7 @@ const Category = () => {
     }
   }, [isLogin, history]);
 
+  //category로 라우팅시 city로 가게 설정 (기본값)
   useEffect(() => {
     const data = history.location.pathname.split('/');
     const category = data[2];
@@ -59,7 +62,7 @@ const Category = () => {
             <Route exact path="/category/city" component={City} />
             <Route exact path="/category/space" component={Space} />
             <Route exact path="/category/nature" component={Nature} />
-            <Route exact path="/category/remember" component={Remeber} />
+            <Route exact path="/category/remember" component={Remember} />
           </Switch>
         </div>
       ) : (

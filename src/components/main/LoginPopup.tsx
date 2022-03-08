@@ -8,6 +8,7 @@ const LoginPopup = () => {
   const dispatch = useDispatch();
   const popInfo = useSelector((state: any) => state.popupInfoReducer);
 
+  //loginPop 리덕스 상태에따라 팝업창 노출여부결정
   useEffect(() => {
     if (popInfo.loginPop === true) {
       poplogin?.classList.add('pop');

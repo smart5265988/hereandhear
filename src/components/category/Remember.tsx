@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { database } from '../../firebase';
-import { ref, onValue, get, child } from 'firebase/database';
+import { ref, get, child } from 'firebase/database';
 import Loading from '../../common/Loading';
 import { useDispatch } from 'react-redux';
 import { setNetworkErrorPop } from '../../redux/reducers/popup';
@@ -22,6 +22,7 @@ const Remember = () => {
     history.push(`/player/${category}/${id}`);
   };
 
+  //파이어베이스에서 해당 카테고리 정보만 가져와서 셋팅
   useEffect(() => {
     setLoading(true);
     const dbRef = ref(database);
@@ -32,7 +33,6 @@ const Remember = () => {
         for (let id in list) {
           contentList.push({ id, ...list[id] });
         }
-        // console.log(contentList);
         setData(contentList);
         setLoading(false);
       })

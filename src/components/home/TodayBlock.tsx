@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import img from '../../res/images/sapporo.jpg';
 import { useDispatch } from 'react-redux';
-import { axiosGet } from '../../util/axiosGet';
 import Loading from '../../common/Loading';
 import { SEESION } from '../../const';
 import { setLoginPop } from '../../redux/reducers/popup';
 import { database } from '../../firebase';
-import { ref, onValue, get, child } from 'firebase/database';
+import { ref, get, child } from 'firebase/database';
 interface Recommend {
   audio: string;
   title: string;
@@ -22,9 +20,9 @@ const TodayBlock = () => {
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
+  //세션에 저장된 값으로 로그인 여부판단
   useEffect(() => {
     const ck: any = sessionStorage.getItem(SEESION);
-    // console.log(JSON.parse(ck));
     if (ck !== null) {
       setLogin(true);
     } else {
@@ -32,21 +30,7 @@ const TodayBlock = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   axiosGet('/recommend.json')
-  //     .then((list: any) => {
-  //       if (list.status === 200) {
-  //         setData(list.data);
-  //         setLoading(false);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       setData([]);
-  //       setLoading(false);
-  //     });
-  // }, []);
-
+  //파이어 베이스에서 추천 데이터 가져오기
   useEffect(() => {
     setLoading(true);
     const dbRef = ref(database);
@@ -61,20 +45,21 @@ const TodayBlock = () => {
     });
   }, []);
 
+  //로그인 여부에따라 페이지 이동 처리 분기 ( 로그인 요청 팝업 )
   const goPlayer = (item: any) => {
     if (isLogin === false) {
-      // console.log('today_block ck');
-      // const poplogin = document.getElementById('popup_login');
-      // poplogin?.classList.add('pop');
       dispatch(setLoginPop(true));
     } else {
       history.push(`/player/${item.category}/${item.id}`);
     }
   };
 
+  // 로딩중
   if (isLoading === true) {
     return <Loading />;
   }
+
+  // 데이터 없을시 아무것도 랜더하지 않음
   if (data.length === 0) {
     return <></>;
   }

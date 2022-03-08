@@ -9,24 +9,13 @@ const PlayerPopup = () => {
   const dispatch = useDispatch();
   const popInfo = useSelector((state: any) => state.popupInfoReducer);
   const [isPlay, setPlay] = useState(true);
-  // console.log(popInfo);
-  const goPlayer = (e: any) => {
-    // e.stopPropagation();
-    // const pop = document.getElementById('popup_player');
-    // if (pop) {
-    //   pop.style.display = 'none';
-    //   history.push('/player');
-    // }
-  };
-  // const data: any = sessionStorage.getItem('data');
-  // const content = JSON.parse(data);
 
   const audioRef = useRef<HTMLAudioElement>(null);
   let audio = audioRef.current;
   let popPlayer = document.getElementById('popup_player');
   let audio2 = document.getElementById('audio2') as HTMLAudioElement;
 
-  //팝업창 노출 여부
+  //playPop 리덕스 상태에따라 팝업창 노출여부결정
   useEffect(() => {
     if (popInfo.playPop === true) {
       popPlayer?.classList.add('pop');
@@ -47,7 +36,6 @@ const PlayerPopup = () => {
   }, [popInfo.isPlay]);
 
   /** Evnet **/
-
   const play = () => {
     dispatch(setPlayerPop(true, true));
     if (audio) {
@@ -69,11 +57,7 @@ const PlayerPopup = () => {
   };
 
   return (
-    <div
-      className="player_modal"
-      id="popup_player"
-      onClick={(e) => goPlayer(e)}
-    >
+    <div className="player_modal" id="popup_player">
       <audio
         ref={audioRef}
         controlsList="nodownload"

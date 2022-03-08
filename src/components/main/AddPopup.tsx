@@ -5,6 +5,8 @@ const AddPopup = () => {
   let poplogin = document.getElementById('popup_add');
   const dispatch = useDispatch();
   const popInfo = useSelector((state: any) => state.popupInfoReducer);
+
+  //AddPop 리덕스 상태에따라 팝업창 노출여부결정
   useEffect(() => {
     if (popInfo.AddPop.pop === true) {
       poplogin?.classList.add('pop');

@@ -6,6 +6,8 @@ const SignUpError = () => {
   let popError = document.getElementById('popup_signup_error');
   const dispatch = useDispatch();
   const popInfo = useSelector((state: any) => state.popupInfoReducer);
+
+  //SignUpError 리덕스 상태에따라 팝업창 노출여부결정
   useEffect(() => {
     if (popInfo.SignUpError === true) {
       popError?.classList.add('pop');

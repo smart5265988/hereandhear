@@ -8,6 +8,8 @@ const NetworkErrorPopup = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const popInfo = useSelector((state: any) => state.popupInfoReducer);
+
+  //netWorkPop 리덕스 상태에따라 팝업창 노출여부결정
   useEffect(() => {
     if (popInfo.netWorkPop === true) {
       popError?.classList.add('pop');

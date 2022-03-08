@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import MyFaq from './MyFaq';
 import MyTerms from './MyTerms';
@@ -7,26 +7,9 @@ import MyLogin from './MyLogin';
 import MyPrivacy from './MyPrivacy';
 import MyContetent from './MyContnent';
 import MySingUp from './MySingUp';
-import Loading from '../../common/Loading';
 import MyEmailLogin from './MyEmailLogin';
 
 const My = () => {
-  // const [isLoading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 500);
-  //   return () => {
-  //     clearTimeout();
-  //   };
-  // }, []);
-
-  // if (isLoading === true) {
-  //   return <Loading />;
-  // }
-
   return (
     <div className="content">
       <Switch>

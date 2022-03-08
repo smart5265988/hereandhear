@@ -11,7 +11,6 @@ import { auth } from '../../firebase';
 import { SEESION } from '../../const';
 import { setLoginErrorPop } from '../../redux/reducers/popup';
 import { useDispatch } from 'react-redux';
-import { setLoginPop } from '../../redux/reducers/popup';
 import Loading from '../../common/Loading';
 
 const MyLogin = () => {
@@ -23,7 +22,6 @@ const MyLogin = () => {
   //로그인 확인용
   useEffect(() => {
     const ck: any = sessionStorage.getItem(SEESION);
-    // console.log(JSON.parse(ck));
     if (ck !== null) {
       history.push('/home');
     }
@@ -32,9 +30,8 @@ const MyLogin = () => {
 
   //로그인 상태 확인 (파이어베이스)
   onAuthStateChanged(auth, (currentUser: any) => {
-    // dispatch(setUserInfo(currentUser))
     setUser(currentUser);
-  }); // 코드 추가
+  });
 
   //구글로그인
   const googleLogin = () => {

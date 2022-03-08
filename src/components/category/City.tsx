@@ -22,6 +22,7 @@ const City = () => {
     history.push(`/player/${category}/${id}`);
   };
 
+  //파이어베이스에서 해당 카테고리 정보만 가져와서 셋팅
   useEffect(() => {
     setLoading(true);
     const dbRef = ref(database);

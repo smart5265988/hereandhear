@@ -8,14 +8,12 @@ import { setSignUpErrorPop } from '../../redux/reducers/popup';
 const MyLogin = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
 
   const singup = async () => {
     try {
       const user = await createUserWithEmailAndPassword(auth, id, password);
-      alert('회원 가입 완료');
       history.push('my/myEmailLogin');
     } catch (error) {
       dispatch(setSignUpErrorPop(true));

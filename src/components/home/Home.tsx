@@ -19,6 +19,7 @@ const Home = () => {
     src: '',
   });
 
+  //상단 비디오 배경 (파이어베이스 데이터베이스 비디오중 랜덤으로 가져올수 있게 셋팅)
   useEffect(() => {
     setLoading(true);
     let random = Math.random() * 4;
@@ -40,6 +41,7 @@ const Home = () => {
       });
   }, []);
 
+  //로그인 팝업이 홈에 왔을때 제거 될 수있게 처리
   useEffect(() => {
     const poplogin = document.getElementById('popup_login');
     if (poplogin?.classList.contains('pop')) {
@@ -47,6 +49,7 @@ const Home = () => {
     }
   }, [history]);
 
+  //로딩중
   if (isLoading === true) {
     return <Loading />;
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-const CategotyBlock = () => {
+const CategoryBlock = () => {
   const history = useHistory();
 
   const detailList = (category: string) => {
@@ -38,4 +38,4 @@ const CategotyBlock = () => {
   );
 };
 
-export default CategotyBlock;
+export default CategoryBlock;

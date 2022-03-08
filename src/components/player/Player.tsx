@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Loading from '../../common/Loading';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,6 +37,7 @@ const Player = () => {
   const [isLogin, setLogin] = useState(false);
   const [isAdd, setAdd] = useState(true);
 
+  //세션에 로그인정보 저장여부로 로그인유지판단
   useEffect(() => {
     const ck: any = sessionStorage.getItem(SEESION);
     const infoParse = JSON.parse(ck);

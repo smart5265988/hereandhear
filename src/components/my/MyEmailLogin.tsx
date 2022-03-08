@@ -15,7 +15,7 @@ const MyEmailLogin = () => {
   const dispatch = useDispatch();
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState({}); // 코드 추가
+  const [user, setUser] = useState({});
 
   //로그인 확인용
   useEffect(() => {
@@ -29,7 +29,7 @@ const MyEmailLogin = () => {
   //로그인 상태 확인 (파이어베이스)
   onAuthStateChanged(auth, (currentUser: any) => {
     setUser(currentUser);
-  }); // 코드 추가
+  });
 
   //일반 이메일 로그인
   const login = () => {

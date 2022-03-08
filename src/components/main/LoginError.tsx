@@ -6,9 +6,8 @@ const LoginError = () => {
   const dispatch = useDispatch();
   const popInfo = useSelector((state: any) => state.popupInfoReducer);
 
+  //LoginError 리덕스 상태에따라 팝업창 노출여부결정
   useEffect(() => {
-    // console.log(popInfo, ':::');
-
     if (popInfo.LoginError === true) {
       poplogin?.classList.add('pop');
     }

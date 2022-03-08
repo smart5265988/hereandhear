@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-// import img from '../../res/images/sapporo.jpg';
-import { axiosGet } from '../../util/axiosGet';
 import Loading from '../../common/Loading';
 import { database } from '../../firebase';
-import { ref, onValue, get, child } from 'firebase/database';
+import { ref, get, child } from 'firebase/database';
 interface Free {
   audio: string;
   title: string;
@@ -17,21 +15,7 @@ const FreeBlock = () => {
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   axiosGet('/free.json')
-  //     .then((list: any) => {
-  //       if (list.status === 200) {
-  //         setData(list.data);
-  //         setLoading(false);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       setData([]);
-  //       setLoading(false);
-  //     });
-  // }, []);
-
+  //파이어 베이스에서 무료 데이터 가져오기
   useEffect(() => {
     setLoading(true);
     const dbRef = ref(database);
@@ -41,7 +25,6 @@ const FreeBlock = () => {
       for (let id in list) {
         contentList.push({ id, ...list[id] });
       }
-      // console.log(contentList);
       setData(contentList);
       setLoading(false);
     });
@@ -51,9 +34,12 @@ const FreeBlock = () => {
     history.push(`/player/${item.category}/${item.id}`);
   };
 
+  // 로딩중
   if (isLoading === true) {
     return <Loading />;
   }
+
+  // 데이터 없을시 아무것도 랜더하지 않음
   if (data.length === 0) {
     return <></>;
   }
