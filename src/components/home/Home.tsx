@@ -1,32 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import CategoryBlock from './CategoryBlock';
 import TodayBlock from './TodayBlock';
 import FreeBlock from './FreeBlock';
 import BannerBlock from '../banner/BannerBlock';
 import Loading from '../../common/Loading';
-import vod from '../../res/video/background_vod2.mp4';
+import { database } from '../../firebase';
+import { ref, get, child } from 'firebase/database';
+import { setNetworkErrorPop } from '../../redux/reducers/popup';
+
 const Home = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (sessionStorage.getItem('data') === undefined) {
-      sessionStorage.setItem(
-        'data',
-        JSON.stringify({ audio: '', title: '', category: '', img: '' }),
-      );
-    }
-  }, [history]);
+  const [data, setData] = useState({
+    id: '',
+    src: '',
+  });
 
   useEffect(() => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-    return () => {
-      clearTimeout();
-    };
+    let random = Math.random() * 4;
+    let randomFloor = Math.floor(random);
+    const dbRef = ref(database);
+    get(child(dbRef, 'video'))
+      .then((snapshot) => {
+        const list = snapshot.val();
+        const contentList = [];
+        for (let id in list) {
+          contentList.push({ id, ...list[id] });
+        }
+        setData(contentList[randomFloor]);
+        console.log(randomFloor);
+        setLoading(false);
+      })
+      .catch((error) => {
+        dispatch(setNetworkErrorPop(true));
+      });
   }, []);
 
   useEffect(() => {
@@ -63,9 +74,7 @@ const Home = () => {
         </div>
         <video
           style={{ width: '100%' }}
-          src={
-            'https://firebasestorage.googleapis.com/v0/b/project-ver2-9966b.appspot.com/o/video%2Fbackground_vod2.mp4?alt=media&token=a2d15842-c461-43e4-b7b4-be232e1e6c31'
-          }
+          src={data.src}
           muted
           loop
           autoPlay
