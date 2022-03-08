@@ -18,7 +18,7 @@ const MyContent = () => {
   const logout = async () => {
     await signOut(auth);
     dispatch(setPlayerPop(false, false));
-    window.location.href = 'http://localhost:3000/home';
+    window.location.href = 'https://herehear.co.kr/home';
   };
 
   useEffect(() => {

@@ -54,9 +54,9 @@ const Home = () => {
 
         <div className="ani_logo"></div>
         <div className="ani_title">
-          당신이 있는 여기서
+          오늘 하루도 지친 당신에게
           <br />
-          듣기만 하면 여행이 시작됩니다.
+          잠깐 일상을 벗어나는건 어떠세요?
           <br />
           <br />
           <b>Here & Hear</b>

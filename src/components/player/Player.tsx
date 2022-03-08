@@ -118,12 +118,12 @@ const Player = () => {
   }
 
   return (
-    <div className="sec_wrapper">
+    <div className="sec_wrapper play">
       <div className="goback" onClick={goback}></div>
       <div
         className="filter"
         style={{
-          height: '100vh',
+          height: '100%',
         }}
       ></div>
       <div>

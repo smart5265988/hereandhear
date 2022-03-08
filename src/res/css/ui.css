@@ -447,8 +447,9 @@ html::-webkit-scrollbar {
   right: 1rem;
   top: 1rem;
   background-color: red;
-  text-align: center;
-  line-height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* my */
@@ -521,10 +522,17 @@ html::-webkit-scrollbar {
   font-size: 1.5rem;
 }
 .google {
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.google div {
+  width: 100%;
+  height: 5rem;
   background: url('../images/btn_google_signin_light_normal_web@2x.png')
     no-repeat;
   background-position: center;
-  background-size: 105%;
+  background-size: 50%;
 }
 
 .my_email_login {
@@ -788,6 +796,13 @@ html::-webkit-scrollbar {
   display: block;
 }
 /* play */
+
+.play {
+  width: 100%;
+  max-width: 50.8rem;
+  height: 100vh;
+  position: fixed;
+}
 
 .play_content {
   position: absolute;

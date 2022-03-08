@@ -82,7 +82,9 @@ const MyLogin = () => {
         <h1 className="categoryTitle inner">Login</h1>
       </div>
       <div className="my_login">
-        <button className="google" onClick={googleLogin}></button>
+        <button className="google" onClick={googleLogin}>
+          <div></div>
+        </button>
         <button
           style={{
             border: '1px solid #26aae1',
