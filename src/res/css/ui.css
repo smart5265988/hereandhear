@@ -245,7 +245,7 @@ html::-webkit-scrollbar {
   background: linear-gradient(
     360deg,
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 212, 255, 0) 100%
+    rgba(255, 255, 255, 0) 70%
   );
   z-index: 30;
 }
@@ -255,7 +255,7 @@ html::-webkit-scrollbar {
   background: linear-gradient(
     360deg,
     rgba(0, 0, 0, 0.8) 0%,
-    rgba(0, 212, 255, 0) 70%
+    rgba(255, 255, 255, 0) 70%
   );
   z-index: 30;
   height: 26rem;
