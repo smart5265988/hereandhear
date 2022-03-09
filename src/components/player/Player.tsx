@@ -10,6 +10,7 @@ import {
 import { database } from '../../firebase';
 import { ref, get, set, child } from 'firebase/database';
 import { SEESION } from '../../const';
+import defaultImg from '../../res/images/default_img.jpeg';
 
 const Player = () => {
   let audio2 = document.getElementById('audio2') as HTMLAudioElement;
@@ -135,9 +136,15 @@ const Player = () => {
 
         <div
           className="play_background"
-          style={{
-            backgroundImage: `url(${data.img})`,
-          }}
+          style={
+            data.img === ''
+              ? {
+                  backgroundImage: `url(${defaultImg})`,
+                }
+              : {
+                  backgroundImage: `url(${data.img})`,
+                }
+          }
         ></div>
         <div className="button">
           {isPlay === false ? (

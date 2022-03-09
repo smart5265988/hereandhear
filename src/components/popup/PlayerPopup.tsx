@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import sample from '../../res/audio/japan.mp3';
 import { setPlayerPop } from '../../redux/reducers/popup';
 import { useDispatch, useSelector } from 'react-redux';
+import defaultImg from '../../res/images/default_img.jpeg';
 
 const PlayerPopup = () => {
   const history = useHistory();
@@ -67,11 +68,15 @@ const PlayerPopup = () => {
 
       <div
         className="player_modal_img"
-        style={{
-          backgroundImage: `url(${popInfo.content.img})`,
-          // backgroundSize: 'cover',
-          // backgroundPosition: 'center',
-        }}
+        style={
+          popInfo.content.img === ''
+            ? {
+                backgroundImage: `url(${defaultImg})`,
+              }
+            : {
+                backgroundImage: `url(${popInfo.content.img})`,
+              }
+        }
       ></div>
       <div className="player_modal_text">
         <div>{popInfo.content.title}</div>

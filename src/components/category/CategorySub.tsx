@@ -6,6 +6,7 @@ import Loading from '../../common/Loading';
 import { useDispatch } from 'react-redux';
 import { setNetworkErrorPop } from '../../redux/reducers/popup';
 import { motion } from 'framer-motion';
+import defaultImg from '../../res/images/default_img.jpeg';
 
 interface Contents {
   category: string;
@@ -93,11 +94,19 @@ const CategorySub = (props: Data) => {
               key={`city${item.id}`}
             >
               <div
-                style={{
-                  background: `url(${item.img}) no-repeat`,
-                  backgroundPosition: 'center',
-                  backgroundSize: 'cover',
-                }}
+                style={
+                  item.img === ''
+                    ? {
+                        background: `url(${defaultImg}) no-repeat`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }
+                    : {
+                        background: `url(${item.img}) no-repeat`,
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover',
+                      }
+                }
               ></div>
               <span className="categorylist_title">{item.title}</span>
               <span className="categorylist_text">here & hear</span>

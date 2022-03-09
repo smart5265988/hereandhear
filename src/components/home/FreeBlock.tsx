@@ -4,7 +4,7 @@ import Loading from '../../common/Loading';
 import { database } from '../../firebase';
 import { ref, get, child } from 'firebase/database';
 import { motion } from 'framer-motion';
-
+import defaultImg from '../../res/images/default_img.jpeg';
 interface Free {
   audio: string;
   title: string;
@@ -87,10 +87,18 @@ const FreeBlock = () => {
           {data.map((item: Free, index) => {
             return (
               <motion.li
-                style={{
-                  background: `url(${item.img}) no-repeat`,
-                  backgroundSize: 'cover',
-                }}
+                style={
+                  item.img === ''
+                    ? {
+                        background: `url(${defaultImg}) no-repeat`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }
+                    : {
+                        background: `url(${item.img}) no-repeat`,
+                        backgroundSize: 'cover',
+                      }
+                }
                 onClick={() => goPlayer(item)}
                 key={`free${index}`}
                 variants={items}
