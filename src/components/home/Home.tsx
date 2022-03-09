@@ -5,10 +5,21 @@ import TodayBlock from './TodayBlock';
 import FreeBlock from './FreeBlock';
 import BannerBlock from '../banner/BannerBlock';
 import Loading from '../../common/Loading';
-
+import UAParser from 'ua-parser-js';
+import Poster from '../../res/images/poster.png';
 const Home = () => {
   const history = useHistory();
   const [isLoading, setLoading] = useState(true);
+  const [isAutoPlay, setAutoPlay] = useState(true);
+
+  // 카카오웹뷰로 보면 오토플레이시 전체화면되서 방지용
+  useEffect(() => {
+    const parser = new UAParser();
+    const browser = parser.getBrowser();
+    if (browser.name === 'WebKit') {
+      setAutoPlay(false);
+    }
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -58,9 +69,10 @@ const Home = () => {
           src={
             'https://firebasestorage.googleapis.com/v0/b/project-ver2-9966b.appspot.com/o/video%2Fbackground_vod4.mp4?alt=media&token=a2d15842-c461-43e4-b7b4-be232e1e6c31'
           }
+          poster={Poster}
           muted
           loop
-          autoPlay
+          autoPlay={isAutoPlay === true ? true : false}
         ></video>
       </div>
       <Route render={() => <CategoryBlock />} />
