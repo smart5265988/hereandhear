@@ -14,6 +14,7 @@ function Loading() {
         position: 'absolute',
         alignItems: 'center',
         justifyContent: 'center',
+        top: '0',
       }}
     >
       <div className="loading"></div>

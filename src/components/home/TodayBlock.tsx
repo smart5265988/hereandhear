@@ -6,6 +6,8 @@ import { SEESION } from '../../const';
 import { setLoginPop } from '../../redux/reducers/popup';
 import { database } from '../../firebase';
 import { ref, get, child } from 'firebase/database';
+import { motion } from 'framer-motion';
+
 interface Recommend {
   audio: string;
   title: string;
@@ -20,6 +22,28 @@ const TodayBlock = () => {
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
+  const container = {
+    show: {
+      transition: {
+        staggerChildren: 0.02,
+      },
+    },
+  };
+
+  const items = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: 'easeOut',
+        duration: 1,
+      },
+    },
+  };
   //세션에 저장된 값으로 로그인 여부판단
   useEffect(() => {
     const ck: any = sessionStorage.getItem(SEESION);
@@ -69,7 +93,12 @@ const TodayBlock = () => {
 
   return (
     // <div className="content today">
-    <div className="sec_wrapper">
+    <motion.div
+      className="sec_wrapper"
+      variants={container}
+      initial="hidden"
+      animate="show"
+    >
       <div className="title_hd">
         <span className="sec_title inner">오늘의 추천</span>
       </div>
@@ -78,12 +107,13 @@ const TodayBlock = () => {
         <ul>
           {data.map((item: Recommend, index) => {
             return (
-              <li
+              <motion.li
                 style={{
                   background: `url(${item.img}) no-repeat`,
                   backgroundSize: 'cover',
                 }}
                 onClick={() => goPlayer(item)}
+                variants={items}
                 key={`recommend${index}`}
               >
                 <div className="block_filter"></div>
@@ -94,12 +124,12 @@ const TodayBlock = () => {
                 )}
                 <div className="free_category">{item.category}</div>
                 <div className="free_title">{item.title}</div>
-              </li>
+              </motion.li>
             );
           })}
         </ul>
       </div>
-    </div>
+    </motion.div>
     // </div>
   );
 };

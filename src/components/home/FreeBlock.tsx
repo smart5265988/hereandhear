@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import Loading from '../../common/Loading';
 import { database } from '../../firebase';
 import { ref, get, child } from 'firebase/database';
+import { motion } from 'framer-motion';
+
 interface Free {
   audio: string;
   title: string;
@@ -14,6 +16,29 @@ const FreeBlock = () => {
   const history = useHistory();
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setLoading] = useState(false);
+
+  const container = {
+    show: {
+      transition: {
+        staggerChildren: 0.02,
+      },
+    },
+  };
+
+  const items = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: 'easeOut',
+        duration: 1,
+      },
+    },
+  };
 
   //파이어 베이스에서 무료 데이터 가져오기
   useEffect(() => {
@@ -47,7 +72,12 @@ const FreeBlock = () => {
     return <></>;
   }
   return (
-    <div className="sec_wrapper">
+    <motion.div
+      className="sec_wrapper"
+      variants={container}
+      initial="hidden"
+      animate="show"
+    >
       <div className="title_hd">
         <span className="sec_title inner">무료 컨텐츠</span>
       </div>
@@ -56,23 +86,24 @@ const FreeBlock = () => {
         <ul>
           {data.map((item: Free, index) => {
             return (
-              <li
+              <motion.li
                 style={{
                   background: `url(${item.img}) no-repeat`,
                   backgroundSize: 'cover',
                 }}
                 onClick={() => goPlayer(item)}
                 key={`free${index}`}
+                variants={items}
               >
                 <div className="block_filter"></div>
                 <div className="free_category">{item.category}</div>
                 <div className="free_title">{item.title}</div>
-              </li>
+              </motion.li>
             );
           })}
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

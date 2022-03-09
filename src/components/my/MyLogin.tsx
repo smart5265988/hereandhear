@@ -12,12 +12,36 @@ import { SEESION } from '../../const';
 import { setLoginErrorPop } from '../../redux/reducers/popup';
 import { useDispatch } from 'react-redux';
 import Loading from '../../common/Loading';
+import { motion } from 'framer-motion';
 
 const MyLogin = () => {
   const history = useHistory();
   const [user, setUser] = useState({}); // 코드 추가
   const [isLoding, setLoading] = useState(false);
   const dispatch = useDispatch();
+
+  const container = {
+    show: {
+      transition: {
+        staggerChildren: 0.02,
+      },
+    },
+  };
+
+  const items = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: 'easeOut',
+        duration: 1,
+      },
+    },
+  };
 
   //로그인 확인용
   useEffect(() => {
@@ -79,8 +103,14 @@ const MyLogin = () => {
       >
         <h1 className="categoryTitle inner">Login</h1>
       </div>
-      <div className="my_login">
-        <button
+      <motion.div
+        className="my_login"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.button
+          variants={items}
           style={{
             backgroundColor: '#fff',
             display: 'flex',
@@ -154,24 +184,26 @@ const MyLogin = () => {
           >
             Sign in with Google
           </span>
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+          variants={items}
           style={{
             border: '1px solid #26aae1',
           }}
           onClick={goEmailLogin}
         >
           이메일로 계속하기
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+          variants={items}
           style={{
             border: '1px solid #FBBC05',
           }}
           onClick={goSingUp}
         >
           회원가입
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
     </div>
   );
 };

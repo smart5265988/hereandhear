@@ -346,12 +346,18 @@ html::-webkit-scrollbar {
 }
 
 /* category Page */
-.categoryNav {
+.category_nav {
   display: flex;
   flex-direction: row;
   /* border: 1px solid red; */
+  overflow-y: hidden;
+  overflow-x: auto;
+  transform: translateZ(0);
 }
-.categoryNav a {
+.category_nav::-webkit-scrollbar {
+  display: none;
+}
+.category_nav a {
   width: max-content;
   /* background-color: blue; */
   height: 5rem;
@@ -362,7 +368,7 @@ html::-webkit-scrollbar {
   cursor: pointer;
   align-items: center;
 }
-.categoryNav a.active {
+.category_nav a.active {
   color: #26aae1;
 }
 

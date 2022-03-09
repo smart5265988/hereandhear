@@ -7,6 +7,7 @@ import { ref, get, child, remove } from 'firebase/database';
 import { setNetworkErrorPop } from '../../redux/reducers/popup';
 import { useDispatch } from 'react-redux';
 import { setLoginPop, setAddPop } from '../../redux/reducers/popup';
+import { motion } from 'framer-motion';
 
 interface List {
   category: string;
@@ -23,6 +24,28 @@ const PlayList = () => {
   const [isLogin, setLogin] = useState(true);
   const [data, setData] = useState<any[]>([]);
 
+  const container = {
+    show: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const items = {
+    hidden: {
+      opacity: 0,
+      // y: 40,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: 'easeOut',
+        duration: 1,
+      },
+    },
+  };
   //로그인 유지
   useEffect(() => {
     const ck: any = sessionStorage.getItem(SEESION);
@@ -102,7 +125,12 @@ const PlayList = () => {
     return <Loading />;
   }
   return (
-    <div className="sec_wrapper">
+    <motion.div
+      className="sec_wrapper"
+      variants={container}
+      initial="hidden"
+      animate="show"
+    >
       <div style={{ paddingTop: '0.9333rem', marginBottom: '0.9333rem' }}>
         <h1 className="categoryTitle inner">BookMark</h1>
       </div>
@@ -115,8 +143,9 @@ const PlayList = () => {
         <div className=" categorylist inner">
           {data.map((item: List, index) => {
             return (
-              <div
+              <motion.div
                 className="list"
+                variants={items}
                 onClick={() => goPlayer(item.category, item.id)}
                 key={`city${item.id}`}
               >
@@ -150,12 +179,12 @@ const PlayList = () => {
                 </div>
                 <span className="categorylist_title">{item.title}</span>
                 <span className="categorylist_text">here & hear</span>
-              </div>
+              </motion.div>
             );
           })}
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

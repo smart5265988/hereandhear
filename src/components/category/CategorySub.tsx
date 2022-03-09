@@ -5,14 +5,20 @@ import { ref, get, child } from 'firebase/database';
 import Loading from '../../common/Loading';
 import { useDispatch } from 'react-redux';
 import { setNetworkErrorPop } from '../../redux/reducers/popup';
-interface SpaceData {
+import { motion } from 'framer-motion';
+
+interface Contents {
   category: string;
   id: string;
   title: string;
   img: string;
 }
 
-const Space = () => {
+interface Data {
+  category: string;
+}
+
+const CategorySub = (props: Data) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [data, setData] = useState<any[]>([]);
@@ -25,11 +31,33 @@ const Space = () => {
     [history],
   );
 
+  const container = {
+    show: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const items = {
+    hidden: {
+      opacity: 0,
+      // y: 40,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: 'easeOut',
+        duration: 1,
+      },
+    },
+  };
   //파이어베이스에서 해당 카테고리 정보만 가져와서 셋팅
   useEffect(() => {
     setLoading(true);
     const dbRef = ref(database);
-    get(child(dbRef, 'space'))
+    get(child(dbRef, props.category))
       .then((snapshot) => {
         const list = snapshot.val();
         const contentList = [];
@@ -49,14 +77,20 @@ const Space = () => {
   }
 
   return (
-    <div className="sec_wrapper inner">
+    <motion.div
+      className="sec_wrapper inner"
+      variants={container}
+      initial="hidden"
+      animate="show"
+    >
       <div className=" categorylist">
-        {data.map((item: SpaceData, index) => {
+        {data.map((item: Contents, index) => {
           return (
-            <div
+            <motion.div
+              variants={items}
               className="list"
               onClick={() => goPlayer(item.category, item.id)}
-              key={`space${item.id}`}
+              key={`city${item.id}`}
             >
               <div
                 style={{
@@ -67,12 +101,12 @@ const Space = () => {
               ></div>
               <span className="categorylist_title">{item.title}</span>
               <span className="categorylist_text">here & hear</span>
-            </div>
+            </motion.div>
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-export default Space;
+export default CategorySub;
