@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Loading from '../../common/Loading';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,14 +10,6 @@ import {
 import { database } from '../../firebase';
 import { ref, get, set, child } from 'firebase/database';
 import { SEESION } from '../../const';
-interface Media {
-  id: string;
-  audio: string;
-  title: string;
-  img: string;
-  category: string;
-  text: string;
-}
 
 const Player = () => {
   let audio2 = document.getElementById('audio2') as HTMLAudioElement;
@@ -57,13 +49,12 @@ const Player = () => {
       const dbRef = ref(database);
       get(child(dbRef, `users/${userInfo}/${id}`)).then((snapshot) => {
         const list = snapshot.val();
-        console.log(list);
         if (list !== null) {
           setAdd(false);
         }
       });
     }
-  }, [userInfo, popInfo.AddPop]);
+  }, [userInfo, popInfo.AddPop, history]);
 
   // 받은 주소를 바탕으로 파이어베이스에서 필요한 데이터를 가져와야함.
   useEffect(() => {
@@ -88,7 +79,7 @@ const Player = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [history]);
+  }, [history, dispatch]);
 
   //플레이팝업 리덕스 상태에 따라 플레이 페이지 버튼 컨트롤
   useEffect(() => {
@@ -100,27 +91,27 @@ const Player = () => {
     }
   }, [popInfo.isPlay]);
 
-  const play = () => {
+  const play = useCallback(() => {
     audio2?.play();
     dispatch(setPlayerPop(true, true));
-  };
+  }, [dispatch, audio2]);
 
-  const pause = () => {
+  const pause = useCallback(() => {
     audio2?.pause();
     dispatch(setPlayerPop(true, false));
-  };
+  }, [dispatch, audio2]);
 
   //파이어베이스 회원 폴더에 추가
-  const addList = () => {
+  const addList = useCallback(() => {
     const dbRef = ref(database, `/users/${userInfo}/${popInfo.content.id}`);
     set(dbRef, popInfo.content).then(() => {
       dispatch(setAddPop(true, '즐겨찾기에 추가 되었습니다.'));
     });
-  };
+  }, [dispatch, popInfo.content, userInfo]);
 
-  const goback = () => {
+  const goback = useCallback(() => {
     history.goBack();
-  };
+  }, [history]);
 
   if (isLoading === true) {
     return <Loading />;

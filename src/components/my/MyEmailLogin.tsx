@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   onAuthStateChanged,
@@ -32,7 +32,7 @@ const MyEmailLogin = () => {
   });
 
   //일반 이메일 로그인
-  const login = () => {
+  const login = useCallback(() => {
     setPersistence(auth, browserSessionPersistence)
       .then(() => {
         return signInWithEmailAndPassword(auth, id, password);
@@ -40,13 +40,13 @@ const MyEmailLogin = () => {
       .catch((error) => {
         dispatch(setLoginErrorPop(true));
       });
-  };
+  }, [id, password, dispatch]);
 
-  const goback = () => {
+  const goback = useCallback(() => {
     history.goBack();
-  };
+  }, [history]);
 
-  const onCheckEnter = (e: any) => {
+  const onCheckEnter = (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.key === 'Enter') {
       login();
     }
@@ -68,7 +68,7 @@ const MyEmailLogin = () => {
             type="text"
             placeholder="Email"
             autoComplete="off"
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setId(e.target.value);
             }}
           />
@@ -76,7 +76,7 @@ const MyEmailLogin = () => {
             type="password"
             placeholder="Password"
             autoComplete="off"
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setPassword(e.target.value);
             }}
           />

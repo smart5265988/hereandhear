@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const CategoryBlock = () => {
   const history = useHistory();
 
-  const detailList = (category: string) => {
-    history.push(`/category/${category}`);
-  };
+  const detailList = useCallback(
+    (category: string) => {
+      history.push(`/category/${category}`);
+    },
+    [history],
+  );
 
   return (
     <div className="sec_wrapper">

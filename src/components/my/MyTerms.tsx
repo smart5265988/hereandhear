@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const MyTerms = () => {
   const history = useHistory();
 
-  const goback = () => {
+  const goback = useCallback(() => {
     history.goBack();
-  };
+  }, [history]);
+
   return (
     <div className="sec_wrapper">
       <div className="goback2" onClick={goback}></div>

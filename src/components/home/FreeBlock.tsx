@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import Loading from '../../common/Loading';
 import { database } from '../../firebase';
@@ -30,9 +30,12 @@ const FreeBlock = () => {
     });
   }, []);
 
-  const goPlayer = (item: any) => {
-    history.push(`/player/${item.category}/${item.id}`);
-  };
+  const goPlayer = useCallback(
+    (item: any) => {
+      history.push(`/player/${item.category}/${item.id}`);
+    },
+    [history],
+  );
 
   // 로딩중
   if (isLoading === true) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { SEESION, version } from '../../const';
 import { signOut } from 'firebase/auth';
@@ -11,15 +11,18 @@ const MyContent = () => {
   const dispatch = useDispatch();
   const [isLogin, setLogin] = useState(false);
 
-  const goPage = (page: string) => {
-    history.push(`/my/${page}`);
-  };
+  const goPage = useCallback(
+    (page: string) => {
+      history.push(`/my/${page}`);
+    },
+    [history],
+  );
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     await signOut(auth);
     dispatch(setPlayerPop(false, false));
     window.location.href = 'https://herehear.co.kr/home';
-  };
+  }, [dispatch]);
 
   //세션에 저장된 값으로 로그인 여부 판단
   useEffect(() => {

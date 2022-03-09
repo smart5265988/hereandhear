@@ -833,7 +833,6 @@ html::-webkit-scrollbar {
 
 .play_content.text {
   height: 15rem;
-  /* background-color: green; */
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { axiosGet } from '../../util/axiosGet';
 import Loading from '../../common/Loading';
@@ -30,9 +30,9 @@ const MyFaq = () => {
       });
   }, []);
 
-  const goback = () => {
+  const goback = useCallback(() => {
     history.goBack();
-  };
+  }, [history]);
 
   if (isLoading === true) {
     return <Loading />;

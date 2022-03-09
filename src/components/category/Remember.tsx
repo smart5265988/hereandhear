@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { database } from '../../firebase';
 import { ref, get, child } from 'firebase/database';
 import Loading from '../../common/Loading';
 import { useDispatch } from 'react-redux';
 import { setNetworkErrorPop } from '../../redux/reducers/popup';
-interface remember {
+interface RememberData {
   category: string;
   id: string;
   title: string;
@@ -18,9 +18,12 @@ const Remember = () => {
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setLoading] = useState(false);
 
-  const goPlayer = (category: string, id: string) => {
-    history.push(`/player/${category}/${id}`);
-  };
+  const goPlayer = useCallback(
+    (category: string, id: string) => {
+      history.push(`/player/${category}/${id}`);
+    },
+    [history],
+  );
 
   //파이어베이스에서 해당 카테고리 정보만 가져와서 셋팅
   useEffect(() => {
@@ -48,7 +51,7 @@ const Remember = () => {
   return (
     <div className="sec_wrapper inner">
       <div className=" categorylist">
-        {data.map((item: remember, index) => {
+        {data.map((item: RememberData, index) => {
           return (
             <div
               className="list"

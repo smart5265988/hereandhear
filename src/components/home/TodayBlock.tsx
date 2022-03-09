@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Loading from '../../common/Loading';
@@ -46,13 +46,16 @@ const TodayBlock = () => {
   }, []);
 
   //로그인 여부에따라 페이지 이동 처리 분기 ( 로그인 요청 팝업 )
-  const goPlayer = (item: any) => {
-    if (isLogin === false) {
-      dispatch(setLoginPop(true));
-    } else {
-      history.push(`/player/${item.category}/${item.id}`);
-    }
-  };
+  const goPlayer = useCallback(
+    (item: any) => {
+      if (isLogin === false) {
+        dispatch(setLoginPop(true));
+      } else {
+        history.push(`/player/${item.category}/${item.id}`);
+      }
+    },
+    [history, dispatch, isLogin],
+  );
 
   // 로딩중
   if (isLoading === true) {

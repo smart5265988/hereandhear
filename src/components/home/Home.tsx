@@ -1,44 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Route, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import CategoryBlock from './CategoryBlock';
 import TodayBlock from './TodayBlock';
 import FreeBlock from './FreeBlock';
 import BannerBlock from '../banner/BannerBlock';
 import Loading from '../../common/Loading';
-import { database } from '../../firebase';
-import { ref, get, child } from 'firebase/database';
-import { setNetworkErrorPop } from '../../redux/reducers/popup';
+// import { database } from '../../firebase';
+// import { ref, get, child } from 'firebase/database';
+// import { setNetworkErrorPop } from '../../redux/reducers/popup';
 
 const Home = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState({
-    id: '',
-    src: '',
-  });
 
-  //상단 비디오 배경 (파이어베이스 데이터베이스 비디오중 랜덤으로 가져올수 있게 셋팅)
   useEffect(() => {
-    setLoading(true);
-    let random = Math.random() * 4;
-    let randomFloor = Math.floor(random);
-    const dbRef = ref(database);
-    get(child(dbRef, 'video'))
-      .then((snapshot) => {
-        const list = snapshot.val();
-        const contentList = [];
-        for (let id in list) {
-          contentList.push({ id, ...list[id] });
-        }
-        setData(contentList[randomFloor]);
-        console.log(randomFloor);
-        setLoading(false);
-      })
-      .catch((error) => {
-        dispatch(setNetworkErrorPop(true));
-      });
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => {
+      setLoading(true);
+    };
   }, []);
 
   //로그인 팝업이 홈에 왔을때 제거 될 수있게 처리
@@ -77,7 +59,9 @@ const Home = () => {
         </div>
         <video
           style={{ width: '100%' }}
-          src={data.src}
+          src={
+            'https://firebasestorage.googleapis.com/v0/b/project-ver2-9966b.appspot.com/o/video%2Fbackground_vod4.mp4?alt=media&token=a2d15842-c461-43e4-b7b4-be232e1e6c31'
+          }
           muted
           loop
           autoPlay

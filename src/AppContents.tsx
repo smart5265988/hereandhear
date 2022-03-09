@@ -8,15 +8,15 @@ const My = React.lazy(() => import('./components/my/My'));
 const PlayList = React.lazy(() => import('./components/playlist/PlayList'));
 const Category = React.lazy(() => import('./components/category/Category'));
 const Footer = React.lazy(() => import('./components/footer/Footer'));
-const LoginPopUp = React.lazy(() => import('./components/main/LoginPopup'));
+const LoginPopUp = React.lazy(() => import('./components/popup/LoginPopup'));
 const NetworkErrorPopup = React.lazy(
-  () => import('./components/main/NetworkErrorPopup'),
+  () => import('./components/popup/NetworkErrorPopup'),
 );
-const PlayerPopup = React.lazy(() => import('./components/main/PlayerPopup'));
+const PlayerPopup = React.lazy(() => import('./components/popup/PlayerPopup'));
 const Player = React.lazy(() => import('./components/player/Player'));
-const LoginError = React.lazy(() => import('./components/main/LoginError'));
-const SignUpError = React.lazy(() => import('./components/main/SignUpError'));
-const AddPopup = React.lazy(() => import('./components/main/AddPopup'));
+const LoginError = React.lazy(() => import('./components/popup/LoginError'));
+const SignUpError = React.lazy(() => import('./components/popup/SignUpError'));
+const AddPopup = React.lazy(() => import('./components/popup/AddPopup'));
 
 function AppContents() {
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Loading from '../../common/Loading';
 import { SEESION } from '../../const';
@@ -22,7 +22,6 @@ const PlayList = () => {
   const [isLoading, setLoading] = useState(false);
   const [isLogin, setLogin] = useState(true);
   const [data, setData] = useState<any[]>([]);
-  const [userInfo, setUserInfo] = useState('');
 
   //로그인 유지
   useEffect(() => {
@@ -39,7 +38,7 @@ const PlayList = () => {
     if (isLogin === true) {
       getData();
     }
-  }, [userInfo]);
+  }, [isLogin]);
 
   //로그인 팝업
   useEffect(() => {
@@ -49,7 +48,7 @@ const PlayList = () => {
     if (isLogin === false) {
       dispatch(setLoginPop(true));
     }
-  }, [isLogin, history]);
+  }, [isLogin, history, dispatch]);
 
   const getData = () => {
     let infoParse = { uid: '' };
@@ -74,24 +73,30 @@ const PlayList = () => {
       });
   };
 
-  const goPage = () => {
+  const goPage = useCallback(() => {
     history.push('./category/city');
-  };
+  }, [history]);
 
-  const goPlayer = (category: string, id: string) => {
-    history.push(`/player/${category}/${id}`);
-  };
+  const goPlayer = useCallback(
+    (category: string, id: string) => {
+      history.push(`/player/${category}/${id}`);
+    },
+    [history],
+  );
 
-  const delContent = (e: any, id: string) => {
-    e.stopPropagation();
-    const dbRef = ref(database);
-    const ck: any = sessionStorage.getItem(SEESION);
-    const infoParse = JSON.parse(ck);
-    remove(child(dbRef, `users/${infoParse.uid}/${id}`)).then(() => {
-      dispatch(setAddPop(true, '즐겨찾기에서 삭제되었습니다.'));
-      getData();
-    });
-  };
+  const delContent = useCallback(
+    (e: any, id: string) => {
+      e.stopPropagation();
+      const dbRef = ref(database);
+      const ck: any = sessionStorage.getItem(SEESION);
+      const infoParse = JSON.parse(ck);
+      remove(child(dbRef, `users/${infoParse.uid}/${id}`)).then(() => {
+        dispatch(setAddPop(true, '즐겨찾기에서 삭제되었습니다.'));
+        getData();
+      });
+    },
+    [dispatch],
+  );
 
   if (isLoading === true) {
     return <Loading />;
