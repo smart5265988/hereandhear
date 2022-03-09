@@ -69,7 +69,7 @@ const PlayerPopup = () => {
       <div
         className="player_modal_img"
         style={
-          popInfo.content.img === ''
+          popInfo.content.img === undefined || popInfo.content.img === ''
             ? {
                 backgroundImage: `url(${defaultImg})`,
               }

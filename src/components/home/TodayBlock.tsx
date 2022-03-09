@@ -110,7 +110,7 @@ const TodayBlock = () => {
             return (
               <motion.li
                 style={
-                  item.img === ''
+                  item.img === undefined || item.img === ''
                     ? {
                         background: `url(${defaultImg}) no-repeat`,
                         backgroundSize: 'cover',

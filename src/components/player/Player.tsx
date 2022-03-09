@@ -137,7 +137,7 @@ const Player = () => {
         <div
           className="play_background"
           style={
-            data.img === ''
+            data.img === undefined || data.img === ''
               ? {
                   backgroundImage: `url(${defaultImg})`,
                 }

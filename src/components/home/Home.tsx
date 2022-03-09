@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Route, useHistory } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
 import CategoryBlock from './CategoryBlock';
 import TodayBlock from './TodayBlock';
 import FreeBlock from './FreeBlock';
 import BannerBlock from '../banner/BannerBlock';
 import Loading from '../../common/Loading';
-// import { database } from '../../firebase';
-// import { ref, get, child } from 'firebase/database';
-// import { setNetworkErrorPop } from '../../redux/reducers/popup';
 
 const Home = () => {
   const history = useHistory();

@@ -8,6 +8,7 @@ import { setNetworkErrorPop } from '../../redux/reducers/popup';
 import { useDispatch } from 'react-redux';
 import { setLoginPop, setAddPop } from '../../redux/reducers/popup';
 import { motion } from 'framer-motion';
+import defaultImg from '../../res/images/default_img.jpeg';
 
 interface List {
   category: string;
@@ -151,11 +152,19 @@ const PlayList = () => {
               >
                 <div
                   className="playlist_img"
-                  style={{
-                    background: `url(${item.img}) no-repeat`,
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover',
-                  }}
+                  style={
+                    item.img === undefined || item.img === ''
+                      ? {
+                          background: `url(${defaultImg}) no-repeat`,
+                          backgroundPosition: 'center',
+                          backgroundSize: 'cover',
+                        }
+                      : {
+                          background: `url(${item.img}) no-repeat`,
+                          backgroundPosition: 'center',
+                          backgroundSize: 'cover',
+                        }
+                  }
                 >
                   <button
                     className="del_btn"

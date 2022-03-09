@@ -1,9 +1,34 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { database } from '../../firebase';
+import { ref, get, child } from 'firebase/database';
+import Loading from '../../common/Loading';
+import defaultImg from '../../res/images/default_img.jpeg';
+
+interface Menu {
+  menu: string;
+  img: string;
+}
 
 const CategoryBlock = () => {
   const history = useHistory();
+  const [data, setData] = useState<any[]>([]);
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const dbRef = ref(database);
+    get(child(dbRef, 'category')).then((snapshot) => {
+      if (snapshot.exists()) {
+        setData(snapshot.val().slice(0, 4));
+        setLoading(false);
+      } else {
+        setData([]);
+        setLoading(false);
+      }
+    });
+  }, []);
 
   const detailList = useCallback(
     (category: string) => {
@@ -20,7 +45,7 @@ const CategoryBlock = () => {
     },
   };
 
-  const item = {
+  const items = {
     hidden: {
       opacity: 0,
       scale: 0.8,
@@ -37,6 +62,12 @@ const CategoryBlock = () => {
     },
   };
 
+  if (isLoading === true) {
+    return <Loading />;
+  }
+  if (data.length === 0) {
+    return <></>;
+  }
   return (
     <motion.div
       className="sec_wrapper"
@@ -67,28 +98,40 @@ const CategoryBlock = () => {
       <div className="category">
         <ul>
           <li>
-            <motion.div
-              variants={item}
-              onClick={() => detailList('city')}
-            ></motion.div>
-            <motion.div
-              variants={item}
-              onClick={() => detailList('remember')}
-            ></motion.div>
-            <motion.div
-              variants={item}
-              onClick={() => detailList('space')}
-            ></motion.div>
-            <motion.div
-              variants={item}
-              onClick={() => detailList('nature')}
-            ></motion.div>
+            {data.map((item: Menu, index) => {
+              return (
+                <motion.div
+                  key={`home_category${index}`}
+                  variants={items}
+                  onClick={() => detailList(item.menu)}
+                  style={
+                    item.img === undefined || item.img === ''
+                      ? {
+                          background: `url(${defaultImg}) no-repeat`,
+                          backgroundPosition: 'center',
+                          backgroundSize: 'cover',
+                        }
+                      : {
+                          background: `url(${item.img}) no-repeat`,
+                          backgroundPosition: 'center',
+                          backgroundSize: 'cover',
+                        }
+                  }
+                ></motion.div>
+              );
+            })}
           </li>
           <li>
-            <motion.div variants={item}>City</motion.div>
-            <motion.div variants={item}>Remember</motion.div>
-            <motion.div variants={item}>Space</motion.div>
-            <motion.div variants={item}>Nature</motion.div>
+            {data.map((item: Menu, index) => {
+              return (
+                <motion.div
+                  key={`home_category_title${index}`}
+                  variants={items}
+                >
+                  {item.menu}
+                </motion.div>
+              );
+            })}
           </li>
         </ul>
       </div>

@@ -95,7 +95,7 @@ const CategorySub = (props: Data) => {
             >
               <div
                 style={
-                  item.img === ''
+                  item.img === undefined || item.img === ''
                     ? {
                         background: `url(${defaultImg}) no-repeat`,
                         backgroundSize: 'cover',
