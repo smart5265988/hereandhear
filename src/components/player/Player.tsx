@@ -120,19 +120,38 @@ const Player = () => {
 
   return (
     <div className="sec_wrapper play">
-      <div className="goback" onClick={goback}></div>
+      <div
+        className="goback"
+        onClick={goback}
+        style={{
+          position: 'fixed',
+        }}
+      ></div>
       <div
         className="filter"
         style={{
-          height: '100%',
+          height: '100vh',
+          position: 'fixed',
         }}
       ></div>
       <div>
-        <div className="play_content title inner">
+        <div
+          className="play_content title inner"
+          style={{
+            position: 'fixed',
+          }}
+        >
           <p>{data.title}</p>
           <span>{data.category}</span>
         </div>
-        <div className="play_content text inner">{data.text}</div>
+        <div
+          className="play_content text inner"
+          style={{
+            position: 'fixed',
+          }}
+        >
+          {data.text}
+        </div>
 
         <div
           className="play_background"
@@ -146,7 +165,12 @@ const Player = () => {
                 }
           }
         ></div>
-        <div className="button">
+        <div
+          className="button"
+          style={{
+            position: 'fixed',
+          }}
+        >
           {isPlay === false ? (
             <div onClick={() => play()}>
               <svg
