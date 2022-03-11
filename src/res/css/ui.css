@@ -150,6 +150,7 @@ html::-webkit-scrollbar {
   overflow-y: hidden;
   overflow-x: auto;
   transform: translateZ(0);
+  scrollbar-width: none;
 }
 
 .home_scroll::-webkit-scrollbar {
@@ -330,6 +331,7 @@ html::-webkit-scrollbar {
   overflow-y: hidden;
   overflow-x: auto;
   transform: translateZ(0);
+  scrollbar-width: none;
 }
 .category_nav::-webkit-scrollbar {
   display: none;
