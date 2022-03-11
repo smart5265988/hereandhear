@@ -40,6 +40,8 @@ const LoginPopup = () => {
               로그인 후 이용할 수 있습니다.
               <br />
               지금 로그인 하시겠습니까?
+              <br />
+              (test@test.com // 비밀번호 123123)
             </p>
           </div>
 
