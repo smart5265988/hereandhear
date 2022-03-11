@@ -85,34 +85,38 @@ const CategorySub = (props: Data) => {
       animate="show"
     >
       <div className=" categorylist">
-        {data.map((item: Contents, index) => {
-          return (
-            <motion.div
-              variants={items}
-              className="list"
-              onClick={() => goPlayer(item.category, item.id)}
-              key={`city${item.id}`}
-            >
-              <div
-                style={
-                  item.img === undefined || item.img === ''
-                    ? {
-                        background: `url(${defaultImg}) no-repeat`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                      }
-                    : {
-                        background: `url(${item.img}) no-repeat`,
-                        backgroundPosition: 'center',
-                        backgroundSize: 'cover',
-                      }
-                }
-              ></div>
-              <span className="categorylist_title">{item.title}</span>
-              <span className="categorylist_text">here & hear</span>
-            </motion.div>
-          );
-        })}
+        {data.length === 0 ? (
+          <div className="category_data_empty">🙏🏻 컨텐츠 준비중입니다.</div>
+        ) : (
+          data.map((item: Contents, index) => {
+            return (
+              <motion.div
+                variants={items}
+                className="list"
+                onClick={() => goPlayer(item.category, item.id)}
+                key={`city${item.id}`}
+              >
+                <div
+                  style={
+                    item.img === undefined || item.img === ''
+                      ? {
+                          background: `url(${defaultImg}) no-repeat`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                        }
+                      : {
+                          background: `url(${item.img}) no-repeat`,
+                          backgroundPosition: 'center',
+                          backgroundSize: 'cover',
+                        }
+                  }
+                ></div>
+                <span className="categorylist_title">{item.title}</span>
+                <span className="categorylist_text">here & hear</span>
+              </motion.div>
+            );
+          })
+        )}
       </div>
     </motion.div>
   );

@@ -22,91 +22,69 @@ const MyTerms = () => {
       </div>
       <div className="my_terms inner">
         <p>
-          {' '}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-          magnam, nemo quod dolorum exercitationem iste inventore eius corrupti
-          a consectetur quisquam esse architecto dolores, fuga, quis ipsa maxime
-          harum quaerat!
+          ■ 개인정보의 수집 및 이용목적 회사는 수집한 개인정보를 다음의 목적을
+          위해 활용합니다. - 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른
+          요금정산 콘텐츠 제공 , 구매 및 요금 결제 - 고객 관리: 고객 서비스
+          이용에 따른 본인확인 , 개인 식별 , 불량회원의 부정 이용 방지와 비인가
+          사용 방지 , 가입 의사 확인 , 연령확인 , 불만처리 등 민원처리 ,
+          고지사항 전달 - 마케팅 및 광고에 활용 : 신규 서비스(제품) 개발 및
+          특화, 이벤트 등 광고성 정보 전달, 접속 빈도 파악 또는 회원의 서비스
+          이용에 대한 통계
         </p>
 
         <p>
-          {' '}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-          magnam, nemo quod dolorum exercitationem iste inventore eius corrupti
-          a consectetur quisquam esse architecto dolores, fuga, quis ipsa maxime
-          harum quaerat!
+          ■ 수집하는 개인정보 항목 회사는 정보주체가 고객서비스(상담신청, 상담,
+          서비스 신청 등)를 이용하기 위하여 고객의 개인 정보를 제공할 때의
+          서비스 제공을 위한 필수 정보와, 보다 향상된 서비스 제공을 위한
+          선택정보를 온라인상 입력방법을 통하여 수집하고 있습니다. 수집하는
+          개인정보의 범위는 아래와 같습니다. 개인정보 수집항목 - 필수항목: 이름,
+          생년월일, 전화번호 , 이메일, 주소, 여권사본, - 선택항목: 직업, 학력,
+          이력, 유학동기, 유학계획, 유학목적 등 입학 지원을 하기 위하여 해당
+          교육기관에서 요청하는 개인 정보. - 자동수집 항목 : 접속로그( 접속시간,
+          접속 아이피,접속 웹브라우져종류,서비스 이용 기록 )
         </p>
 
         <p>
-          {' '}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-          magnam, nemo quod dolorum exercitationem iste inventore eius corrupti
-          a consectetur quisquam esse architecto dolores, fuga, quis ipsa maxime
-          harum quaerat!
+          ■ 개인정보의 파기절차 및 방법 회사는 원칙적으로 개인정보 수집 및
+          이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 파기절차 및
+          방법은 다음과 같습니다. 파기절차 회원님이 회원가입 등을 위해 입력하신
+          정보는 목적이 달성된 후 별도의 DB로 옮겨져(종이의 경우 별도의 서류함)
+          내부 방침 및 기타 관련 법령에 의한 정보보호 사유에 따라(보유 및
+          이용기간 참조) 일정 기간 저장된 후 파기되어 집니다. 별도 DB로 옮겨진
+          개인정보는 법률에 의한 경우가 아니고서는 보유 되어지는 이외의 다른
+          목적으로 이용되지 않습니다. 파기방법 - 전자적 파일형태로 저장된
+          개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다. -
+          종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각을 통하여 파기합니다.
         </p>
-
         <p>
-          {' '}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-          magnam, nemo quod dolorum exercitationem iste inventore eius corrupti
-          a consectetur quisquam esse architecto dolores, fuga, quis ipsa maxime
-          harum quaerat!
+          ■ 개인정보의 공유 및 제공 회사는 이용자의 개인정보를 원칙적으로 외부에
+          제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다. 고객으로부터
+          수속 서비스 대행을 의뢰 받은 경우 법령의 규정에 의거하거나, 수사
+          목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우
         </p>
-
         <p>
-          {' '}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-          magnam, nemo quod dolorum exercitationem iste inventore eius corrupti
-          a consectetur quisquam esse architecto dolores, fuga, quis ipsa maxime
-          harum quaerat!
+          ■ 만 14세 미만 아동의 개인정보보호 법정대리인의 동의가 필요한 만14세
+          미만의 아동의 개인정보를 수집하지 않으며, 회원가입을 불허하고
+          있습니다.
         </p>
-
         <p>
-          {' '}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-          magnam, nemo quod dolorum exercitationem iste inventore eius corrupti
-          a consectetur quisquam esse architecto dolores, fuga, quis ipsa maxime
-          harum quaerat!
+          ■ 이용자 및 법정대리인의 권리와 그 행사방법 이용자는 언제든지 등록되어
+          있는 자신의 개인정보를 조회하거나 수정할 수 있으며 가입 해지를 요청할
+          수도 있습니다. 이용자들의 개인정보 조회,수정을 위해서는
+          ‘개인정보변경’(또는 ‘회원정보수정’ 등) 해지(동의철회)를 위해서는
+          개인정보관리책임자에게 서면, 전화 또는 이 메일로 연락하시면 지체 없이
+          조치하겠습니다. 귀하가 개인정보의 오류에 대한 정정을 요청하신 경우에는
+          정정을 완료하기 전까지 당해 개인정보를 이용 또는 제공하지 않습니다.
+          또한 잘못된 개인정보를 제3자에게 이미 제공한 경우에는 정정 처리결과를
+          제3자에게 지체 없이 통지하여 정정이 이루어지도록 하겠습니다. 회사는
+          이용자의 요청에 의해 해지 또는 삭제된 개인정보는 “회사가 수집하는
+          개인정보의 보유 및 이용기간”에 명시된 바에 따라 처리하고 그 외의
+          용도로 열람 또는 이용할 수 없도록 처리하고 있습니다.
         </p>
-
         <p>
-          {' '}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-          magnam, nemo quod dolorum exercitationem iste inventore eius corrupti
-          a consectetur quisquam esse architecto dolores, fuga, quis ipsa maxime
-          harum quaerat!
-        </p>
-
-        <p>
-          {' '}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-          magnam, nemo quod dolorum exercitationem iste inventore eius corrupti
-          a consectetur quisquam esse architecto dolores, fuga, quis ipsa maxime
-          harum quaerat!
-        </p>
-
-        <p>
-          {' '}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-          magnam, nemo quod dolorum exercitationem iste inventore eius corrupti
-          a consectetur quisquam esse architecto dolores, fuga, quis ipsa maxime
-          harum quaerat!
-        </p>
-
-        <p>
-          {' '}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-          magnam, nemo quod dolorum exercitationem iste inventore eius corrupti
-          a consectetur quisquam esse architecto dolores, fuga, quis ipsa maxime
-          harum quaerat!
-        </p>
-
-        <p>
-          {' '}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias
-          magnam, nemo quod dolorum exercitationem iste inventore eius corrupti
-          a consectetur quisquam esse architecto dolores, fuga, quis ipsa maxime
-          harum quaerat!
+          ■ 개인정보에 관한 민원서비스 회사는 고객의 개인정보를 보호하고
+          개인정보와 관련한 불만을 처리하기 위하여 아래와 같이 관련 부서 및
+          개인정보관리책임자를 지정하고 있습니다.
         </p>
       </div>
     </div>

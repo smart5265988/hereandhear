@@ -355,7 +355,14 @@ html::-webkit-scrollbar {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
+.category_data_empty {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
 .list {
   display: inline-block;
   width: 45%;
